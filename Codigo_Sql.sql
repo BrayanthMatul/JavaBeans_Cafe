@@ -19,6 +19,8 @@ CREATE TABLE empleado(
     codigo_empleado INT PRIMARY KEY AUTO_INCREMENT,
     dpi VARCHAR(20) NOT NULL UNIQUE,
     nombre_completo VARCHAR(225) NOT NULL,
+    nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
+    contrasena VARCHAR(255) NOT NULL,
     rol VARCHAR(50) NOT NULL,
     jornada_laboral VARCHAR(50) NOT NULL,
     salario DECIMAL(10, 2) NOT NULL,

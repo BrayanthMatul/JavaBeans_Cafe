@@ -1,0 +1,8 @@
+Color de fondo verdoso: #323423
+
+Color naranja Java: #e38758
+
+Color naranja blanco: #d5c1a9
+
+
+

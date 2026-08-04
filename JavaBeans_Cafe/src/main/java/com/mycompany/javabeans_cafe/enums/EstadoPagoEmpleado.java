@@ -1,12 +1,12 @@
 package com.mycompany.javabeans_cafe.enums;
 
-public enum EstadoPago {
+public enum EstadoPagoEmpleado {
     PENDIENTE("PENDIENTE"),
     PAGADO("PAGADO");
 
     private final String estadoPago;
 
-    EstadoPago(String estadoPago) {
+    EstadoPagoEmpleado(String estadoPago) {
         this.estadoPago = estadoPago;
     }
 

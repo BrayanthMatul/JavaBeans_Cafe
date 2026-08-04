@@ -3,7 +3,7 @@ package com.mycompany.javabeans_cafe.modelos;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-import com.mycompany.javabeans_cafe.enums.EstadoPago;
+import com.mycompany.javabeans_cafe.enums.EstadoPagoEmpleado;
 import com.mycompany.javabeans_cafe.enums.TipoPago;
 
 public class PagoSalario {
@@ -13,14 +13,14 @@ public class PagoSalario {
     private Timestamp fechaHoraEmision;
     private TipoPago tipoPago;
     private BigDecimal montoPago;
-    private EstadoPago estado;
+    private EstadoPagoEmpleado estado;
 
     // Faltan correcciones en el sql
     // Aniadir el dpi
     // El estado es Varcachar
 
     public PagoSalario(int codigoNomina, int codigoEmpleado, String dpiEmpleado, Timestamp fechaHoraEmision,
-            TipoPago tipoPago, BigDecimal montoPago, EstadoPago estado) {
+            TipoPago tipoPago, BigDecimal montoPago, EstadoPagoEmpleado estado) {
         this.codigoNomina = codigoNomina;
         this.codigoEmpleado = codigoEmpleado;
         this.dpiEmpleado = dpiEmpleado;
@@ -31,7 +31,7 @@ public class PagoSalario {
     }
 
     public PagoSalario(int codigoEmpleado, String dpiEmpleado, Timestamp fechaHoraEmision, TipoPago tipoPago,
-            BigDecimal montoPago, EstadoPago estado) {
+            BigDecimal montoPago, EstadoPagoEmpleado estado) {
         this.codigoEmpleado = codigoEmpleado;
         this.dpiEmpleado = dpiEmpleado;
         this.fechaHoraEmision = fechaHoraEmision;

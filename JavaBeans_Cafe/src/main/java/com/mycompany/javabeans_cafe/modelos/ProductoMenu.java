@@ -10,7 +10,7 @@ public class ProductoMenu {
     private CategoriaProducto categoria;
     private BigDecimal precioVenta;
     private byte[] imagen;
-    private boolean disponible;
+    private boolean disponible; // Hay que borrarlo en el Sql y aqui, se hara la validacion al momento de realizar el pedido
 
     public ProductoMenu(int codigoProducto, String nombreProducto, CategoriaProducto categoria, BigDecimal precioVenta,
             byte[] imagen, boolean disponible) {

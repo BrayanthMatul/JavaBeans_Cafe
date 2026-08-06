@@ -10,25 +10,21 @@ public class ProductoMenu {
     private CategoriaProducto categoria;
     private BigDecimal precioVenta;
     private byte[] imagen;
-    private boolean disponible; // Hay que borrarlo en el Sql y aqui, se hara la validacion al momento de realizar el pedido
 
     public ProductoMenu(int codigoProducto, String nombreProducto, CategoriaProducto categoria, BigDecimal precioVenta,
-            byte[] imagen, boolean disponible) {
+            byte[] imagen) {
         this.codigoProducto = codigoProducto;
         this.nombreProducto = nombreProducto;
         this.categoria = categoria;
         this.precioVenta = precioVenta;
         this.imagen = imagen;
-        this.disponible = disponible;
     }
 
-    public ProductoMenu(String nombreProducto, CategoriaProducto categoria, BigDecimal precioVenta, byte[] imagen,
-            boolean disponible) {
+    public ProductoMenu(String nombreProducto, CategoriaProducto categoria, BigDecimal precioVenta, byte[] imagen) {
         this.nombreProducto = nombreProducto;
         this.categoria = categoria;
         this.precioVenta = precioVenta;
         this.imagen = imagen;
-        this.disponible = disponible;
     }
 
 }

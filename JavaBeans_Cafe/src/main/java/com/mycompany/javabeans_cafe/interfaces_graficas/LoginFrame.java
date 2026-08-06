@@ -29,7 +29,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private boolean errorEnUsuario;
     private boolean errorEnContrasenia;
     private boolean errorEnValidacion;
-    private String nombreUsuario;
+    private String credencialIngresada;
     private String contrasenia;
 
     /**
@@ -37,6 +37,10 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         initComponents();
+
+        setTitle("Inicio");
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -46,7 +50,8 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -75,13 +80,11 @@ public class LoginFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 258, Short.MAX_VALUE));
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
-        );
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 382, Short.MAX_VALUE));
 
         jPanel1.add(jPanel3);
 
@@ -93,13 +96,11 @@ public class LoginFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 258, Short.MAX_VALUE));
         jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 29, Short.MAX_VALUE)
-        );
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 29, Short.MAX_VALUE));
 
         jPanel2.add(jPanel5);
 
@@ -116,13 +117,11 @@ public class LoginFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
+                jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 258, Short.MAX_VALUE));
         jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 29, Short.MAX_VALUE)
-        );
+                jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 29, Short.MAX_VALUE));
 
         jPanel2.add(jPanel8);
 
@@ -155,13 +154,11 @@ public class LoginFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
+                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 258, Short.MAX_VALUE));
         jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 29, Short.MAX_VALUE)
-        );
+                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 29, Short.MAX_VALUE));
 
         jPanel2.add(jPanel6);
 
@@ -172,13 +169,11 @@ public class LoginFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 258, Short.MAX_VALUE));
         jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
-        );
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 382, Short.MAX_VALUE));
 
         jPanel1.add(jPanel4);
 
@@ -189,26 +184,33 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void recolectarDatosUsuario() {
         this.errorEnRecolector = false;
+        this.errorEnUsuario = false;
+        this.errorEnContrasenia = false;
         recolector = new RecolectorDeDatos();
         String mensajeError = "";
 
         try {
-            this.nombreUsuario = recolector.recolectarTexto(jTextFieldEmpleado);
+            this.credencialIngresada = recolector.recolectarTexto(jTextFieldEmpleado);
         } catch (TextoVacioException e) {
             errorEnUsuario = true;
+            errorEnRecolector = true;
             mensajeError = "El campo nombre de usuario no puede estar vacio.";
+            System.out.println("Entro en nombre vacio exception");
         }
 
         try {
             this.contrasenia = recolector.recolectarTexto(jPasswordFieldContrasenia);
         } catch (TextoVacioException e) {
             errorEnContrasenia = true;
+            errorEnRecolector = true;
             mensajeError = "El campo contraseña no puede estar vacio.";
+            System.out.println("Entro en contrasenia vacio exception");
         }
 
         if (errorEnRecolector) {
             if (errorEnUsuario && errorEnContrasenia) {
                 mensajeError = "Por favor, complete todos los campos requeridos.";
+                System.out.println("Ambos campos vacios");
             }
 
             mostrarMensajeErrorRecolector(mensajeError);
@@ -217,18 +219,16 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     private void verificarCredenciales() {
-        String usuarioNombre = jTextFieldEmpleado.getText();
-        String password = new String(jPasswordFieldContrasenia.getPassword());
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
 
         try {
-            Empleado empleado = empleadoDAO.encontrarPorNombreUsuario(usuarioNombre);
+            Empleado empleado = empleadoDAO.encontrarPorNombreUsuario(credencialIngresada);
 
             if (empleado == null) {
-                empleado = empleadoDAO.encontrarPorDPI(usuarioNombre);
+                empleado = empleadoDAO.encontrarPorDPI(credencialIngresada);
             }
 
-            if (empleado != null && empleado.getContrasena().equals(password)) {
+            if (empleado != null && empleado.getContrasena().equals(contrasenia)) {
 
                 // Credenciales válidas, abrir la ventana principal
                 if (empleado.getRol() == EmpleadoRol.ADMINISTRADOR) {
@@ -250,19 +250,19 @@ public class LoginFrame extends javax.swing.JFrame {
                 }
             } else {
                 String mensajeError = "Usuario o contraseña incorrectos.";
-                MensajeDialogFrame mensajeErrorFrame = new MensajeDialogFrame(null, true, mensajeError);
+                MensajeDialogFrame mensajeErrorFrame = new MensajeDialogFrame(null, true, mensajeError, true);
                 mensajeErrorFrame.setVisible(true);
             }
         } catch (Exception e) {
             String mensajeError = "Error al validar credenciales: " + e.getMessage();
-            MensajeDialogFrame mensajeErrorFrame = new MensajeDialogFrame(null, true, mensajeError);
+            MensajeDialogFrame mensajeErrorFrame = new MensajeDialogFrame(null, true, mensajeError, true);
             mensajeErrorFrame.setVisible(true);
         }
 
     }
 
     private void mostrarMensajeErrorRecolector(String mensaje) {
-        MensajeDialogFrame mensajeErrorFrame = new MensajeDialogFrame(null, true, mensaje);
+        MensajeDialogFrame mensajeErrorFrame = new MensajeDialogFrame(null, true, mensaje, true);
         mensajeErrorFrame.setVisible(true);
         errorEnRecolector = true;
     }

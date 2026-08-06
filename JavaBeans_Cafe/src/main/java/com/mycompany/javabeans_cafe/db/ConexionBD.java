@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class ConexionBD {
     private static final String URL = "jdbc:mysql://localhost:3306/javabeans_cafe";
-    private static final String USER = "usuario_practica_1";
-    private static final String PASSWORD = "123456";
+    private static final String USER = "us_prac_1";
+    private static final String PASSWORD = "12345";
     private static Connection conexion;
 
     static {

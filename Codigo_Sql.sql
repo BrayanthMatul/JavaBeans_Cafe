@@ -35,11 +35,13 @@ VALUES ('123456789', 'Administrador', 'admin', '1234', 'ADMINISTRADOR', 'MATUTIN
 CREATE TABLE pago_salario (
     codigo_nomina INT PRIMARY KEY AUTO_INCREMENT,
     codigo_empleado INT NOT NULL,
+    dpi_empleado VARCHAR(20) NOT NULL,
     fecha_hora_emision DATETIME NOT NULL,
     tipo_pago VARCHAR(50) NOT NULL,
     monto_pago DECIMAL(10, 2) NOT NULL,
-    estado BOOLEAN NOT NULL,
-    FOREIGN KEY (codigo_empleado) REFERENCES empleado(codigo_empleado) 
+    estado VARCHAR(15) NOT NULL,
+    FOREIGN KEY (codigo_empleado) REFERENCES empleado(codigo_empleado),
+    FOREIGN KEY (dpi_empleado) REFERENCES empleado(dpi)
 );
 
 CREATE TABLE insumo (
@@ -66,8 +68,7 @@ CREATE TABLE producto_menu (
     nombre_producto VARCHAR(100) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
     precio_venta DECIMAL(10, 2) NOT NULL,
-    imagen LONGBLOB,
-    disponible BOOLEAN NOT NULL
+    imagen LONGBLOB
 );
 
 CREATE TABLE insumo_producto (

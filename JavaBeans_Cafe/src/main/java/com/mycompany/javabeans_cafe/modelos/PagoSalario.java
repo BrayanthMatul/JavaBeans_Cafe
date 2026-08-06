@@ -15,10 +15,6 @@ public class PagoSalario {
     private BigDecimal montoPago;
     private EstadoPagoEmpleado estado;
 
-    // Faltan correcciones en el sql
-    // Aniadir el dpi
-    // El estado es Varcachar
-
     public PagoSalario(int codigoNomina, int codigoEmpleado, String dpiEmpleado, Timestamp fechaHoraEmision,
             TipoPago tipoPago, BigDecimal montoPago, EstadoPagoEmpleado estado) {
         this.codigoNomina = codigoNomina;

@@ -45,4 +45,87 @@ public class Empleado {
         this.fechaContratacion = fechaContratacion;
         this.activo = activo;
     }
+
+    public int getCodigoEmpleado() {
+        return codigoEmpleado;
+    }
+
+    public String getDpi() {
+        return dpi;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public EmpleadoRol getRol() {
+        return rol;
+    }
+
+    public JornadaLaboral getJornadaLaboral() {
+        return jornadaLaboral;
+    }
+
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
+    public LocalDate getFechaContratacion() {
+        return fechaContratacion;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    // SEtters
+
+    public void setCodigoEmpleado(int codigoEmpleado) {
+        this.codigoEmpleado = codigoEmpleado;
+    }
+
+    public void setDpi(String dpi) {
+        this.dpi = dpi;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public void setRol(EmpleadoRol rol) {
+        this.rol = rol;
+    }
+
+    public void setJornadaLaboral(JornadaLaboral jornadaLaboral) {
+        this.jornadaLaboral = jornadaLaboral;
+    }
+
+    public void setSalario(BigDecimal salario) {
+        this.salario = salario;
+    }
+
+    public void setFechaContratacion(LocalDate fechaContratacion) {
+        this.fechaContratacion = fechaContratacion;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
 }

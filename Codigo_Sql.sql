@@ -28,6 +28,9 @@ CREATE TABLE empleado(
     activo BOOLEAN NOT NULL
 );
 
+-- Ingresar administrador por defecto
+INSERT INTO empleado (dpi, nombre_completo, nombre_usuario, contrasena, rol, jornada_laboral, salario, fecha_de_contratacion, activo)
+VALUES ('123456789', 'Administrador', 'admin', '1234', 'ADMINISTRADOR', 'MATUTINA', 5000.00, '2026-07-30', TRUE);
 
 CREATE TABLE pago_salario (
     codigo_nomina INT PRIMARY KEY AUTO_INCREMENT,

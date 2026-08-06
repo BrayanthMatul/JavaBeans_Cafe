@@ -1,8 +1,8 @@
 CREATE DATABASE javabeans_cafe;
 
-CREATE USER 'usuario_practica_1'@'localhost' IDENTIFIED BY '12345';
+CREATE USER 'us_prac_1'@'localhost' IDENTIFIED BY '12345';
 
-GRANT ALL PRIVILEGES ON javabeans_cafe.* TO 'usuario_practica_1'@'localhost';
+GRANT ALL PRIVILEGES ON javabeans_cafe.* TO 'us_prac_1'@'localhost';
 FLUSH PRIVILEGES;
 
 USE javabeans_cafe;

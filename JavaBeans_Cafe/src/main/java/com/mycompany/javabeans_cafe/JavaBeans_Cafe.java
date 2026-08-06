@@ -4,6 +4,8 @@
 
 package com.mycompany.javabeans_cafe;
 
+import com.mycompany.javabeans_cafe.interfaces_graficas.LoginFrame;
+
 /**
  *
  * @author matul
@@ -11,6 +13,7 @@ package com.mycompany.javabeans_cafe;
 public class JavaBeans_Cafe {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
     }
 }

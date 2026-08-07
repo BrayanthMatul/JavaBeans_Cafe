@@ -9,5 +9,7 @@ package com.mycompany.javabeans_cafe.exceptions;
  * @author matul
  */
 public class NumeroInvalidoException extends Exception{
-    
+    public NumeroInvalidoException() {
+        super("Número inválido");
+    }
 }

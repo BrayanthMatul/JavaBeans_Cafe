@@ -6,6 +6,10 @@ package com.mycompany.javabeans_cafe.util;
 
 import com.mycompany.javabeans_cafe.exceptions.NumeroInvalidoException;
 import com.mycompany.javabeans_cafe.exceptions.TextoVacioException;
+
+import java.math.BigDecimal;
+
+import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
 /**
@@ -42,5 +46,13 @@ public class RecolectorDeDatos {
         }
 
         return texto.strip();
+    }
+
+    public BigDecimal recolectarBigDecimals(JTextField jTextFieldSalario) throws NumeroInvalidoException {
+        try {
+            return new BigDecimal(jTextFieldSalario.getText());
+        } catch (NumberFormatException e) {
+            throw new NumeroInvalidoException();
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.mycompany.javabeans_cafe.daos;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,25 @@ import com.mycompany.javabeans_cafe.enums.JornadaLaboral;
 import com.mycompany.javabeans_cafe.modelos.Empleado;
 
 public class EmpleadoDAO {
+
+    public void insertarEmpleado(Empleado empleado) throws SQLException {
+        String query = "INSERT INTO empleado (dpi, nombre_completo, nombre_usuario, contrasena, rol, jornada_laboral, salario, fecha_de_contratacion, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, empleado.getDpi());
+            preparedStatement.setString(2, empleado.getNombreCompleto());
+            preparedStatement.setString(3, empleado.getNombreUsuario());
+            preparedStatement.setString(4, empleado.getContrasena());
+            preparedStatement.setString(5, empleado.getRol().getTipoEmpleado());
+            preparedStatement.setString(6, empleado.getJornadaLaboral().getJornada());
+            preparedStatement.setBigDecimal(7, empleado.getSalario());
+            preparedStatement.setDate(8, Date.valueOf(empleado.getFechaContratacion()));
+            preparedStatement.setBoolean(9, empleado.isActivo());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al insertar empleado en la base de datos: " + e.getMessage());
+        }
+    }
 
     public Empleado encontrarPorNombreUsuario(String nombreUsuario) throws SQLException {
         String query = "SELECT * FROM empleado WHERE nombre_usuario = ?";

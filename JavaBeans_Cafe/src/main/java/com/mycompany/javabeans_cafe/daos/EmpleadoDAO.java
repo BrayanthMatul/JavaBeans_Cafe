@@ -162,6 +162,18 @@ public class EmpleadoDAO {
         }
     }
 
+    public void actualizarEstadoEmpleado(int codigoEmpleado, boolean nuevoEstado) throws SQLException {
+        String query = "UPDATE empleado SET activo = ? WHERE codigo_empleado = ?";
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setBoolean(1, nuevoEstado);
+            preparedStatement.setInt(2, codigoEmpleado);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar el estado del empleado en la base de datos: " + e.getMessage());
+        }
+    }
+
     private Empleado convertirAEmpleado(ResultSet resultSet)
             throws SQLException {
 

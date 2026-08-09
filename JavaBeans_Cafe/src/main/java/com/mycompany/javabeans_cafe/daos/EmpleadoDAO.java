@@ -91,6 +91,7 @@ public class EmpleadoDAO {
         return null;
     }
 
+    // PUeda que solo sea para activar y desactivar empleados
     public List<Empleado> obtenerTodos() throws SQLException {
         String query = "SELECT * FROM empleado";
 
@@ -113,34 +114,47 @@ public class EmpleadoDAO {
         return empleados;
     }
 
-    public List<Empleado> obtenerTodosExceptoRol(EmpleadoRol rolExcluido)
-            throws SQLException {
+    public List<Empleado> obtenerTodos(boolean activo) throws SQLException {
 
-        String query = "SELECT * FROM empleado WHERE rol <> ?";
-
+        String query = "SELECT * FROM empleado WHERE activo = ?";
         List<Empleado> empleados = new ArrayList<>();
 
         try (Connection conexion = ConexionBD.getConexion();
                 PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
 
-            preparedStatement.setString(
-                    1,
-                    rolExcluido.getTipoEmpleado());
+            preparedStatement.setBoolean(1, activo);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-
                 while (resultSet.next()) {
                     empleados.add(convertirAEmpleado(resultSet));
                 }
             }
-
         } catch (SQLException e) {
             throw new SQLException(
-                    "Error al obtener empleados excluyendo el rol "
-                            + rolExcluido + ": " + e.getMessage(),
+                    "Error al obtener empleados: " + e.getMessage(),
                     e);
         }
+        return empleados;
+    }
 
+    public List<Empleado> obtenerTodosExceptoRol(EmpleadoRol rolExcluido)
+            throws SQLException {
+
+        String query = "SELECT * FROM empleado WHERE rol <> ?";
+        List<Empleado> empleados = new ArrayList<>();
+
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, rolExcluido.getTipoEmpleado());
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    empleados.add(convertirAEmpleado(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Error al obtener empleados excluyendo el rol " + rolExcluido + ": " + e.getMessage(), e);
+        }
         return empleados;
     }
 

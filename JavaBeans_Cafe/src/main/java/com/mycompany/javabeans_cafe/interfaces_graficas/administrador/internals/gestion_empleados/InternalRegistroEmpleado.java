@@ -105,6 +105,10 @@ public class InternalRegistroEmpleado extends javax.swing.JInternalFrame {
 
         try {
             this.salario = recolector.recolectarBigDecimals(jTextFieldSalario);
+        } catch (TextoVacioException e) {
+            mensajeError = "El campo salario no puede estar vacio.";
+            mostrarMensajeErrorRecolector(mensajeError);
+            return;
         } catch (NumeroInvalidoException e) {
             mensajeError = "El campo salario contiene un número inválido.";
             mostrarMensajeErrorRecolector(mensajeError);

@@ -9,6 +9,7 @@ import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalEditorEmpleado;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalListaEmpleados;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalRegistroEmpleado;
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestionn_insumos.InternalRegistrarInsumo;
 import javax.swing.JInternalFrame;
 
 /**
@@ -50,6 +51,8 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuIemEditarEmpleado = new javax.swing.JMenuItem();
         jMenuItemActivarDesactivar = new javax.swing.JMenuItem();
         jMenuItemListaEmpleados = new javax.swing.JMenuItem();
+        jMenuInventario = new javax.swing.JMenu();
+        jMenuItemRegistrarInsumo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -88,6 +91,14 @@ public class AdminPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuPersonal);
 
+        jMenuInventario.setText("Inventario");
+
+        jMenuItemRegistrarInsumo.setText("Registrar Insumo");
+        jMenuItemRegistrarInsumo.addActionListener(this::jMenuItemRegistrarInsumoActionPerformed);
+        jMenuInventario.add(jMenuItemRegistrarInsumo);
+
+        jMenuBar1.add(jMenuInventario);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -120,6 +131,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
         listaEmpleados.setVisible(true);
     }//GEN-LAST:event_jMenuItemListaEmpleadosActionPerformed
 
+    private void jMenuItemRegistrarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarInsumoActionPerformed
+        this.cerrarVentanasInternas();
+        InternalRegistrarInsumo registroInsumo = new InternalRegistrarInsumo();
+        jDesktopPane1.add(registroInsumo);
+        registroInsumo.setVisible(true);
+    }//GEN-LAST:event_jMenuItemRegistrarInsumoActionPerformed
+
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
         InternalRegistroEmpleado registrarEmpleado = new InternalRegistroEmpleado();
@@ -138,11 +156,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuIemEditarEmpleado;
+    private javax.swing.JMenu jMenuInventario;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemActivarDesactivar;
     private javax.swing.JMenuItem jMenuItemCerrarSesion;
     private javax.swing.JMenuItem jMenuItemListaEmpleados;
     private javax.swing.JMenuItem jMenuItemRegistrarEmpleado;
+    private javax.swing.JMenuItem jMenuItemRegistrarInsumo;
     private javax.swing.JMenu jMenuPersonal;
     // End of variables declaration//GEN-END:variables
 }

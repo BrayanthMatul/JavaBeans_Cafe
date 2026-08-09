@@ -4,6 +4,8 @@
  */
 package com.mycompany.javabeans_cafe.interfaces_graficas.administrador;
 
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalEditorEmpleado;
+
 /**
  *
  * @author matul
@@ -18,7 +20,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
      */
     public AdminPrincipal() {
         initComponents();
-        System.out.println("Ingreso a admin");
+
     }
 
     /**
@@ -28,56 +30,46 @@ public class AdminPrincipal extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuPersonal = new javax.swing.JMenu();
+        jMenuItemRegistrarEmpleado = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
-        jButton1.setText("jButton1");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(jButton1)
-                .addContainerGap(565, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jButton1)
-                .addContainerGap(103, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-        );
-
+        jDesktopPane1.setLayout(new javax.swing.BoxLayout(jDesktopPane1, javax.swing.BoxLayout.LINE_AXIS));
         getContentPane().add(jDesktopPane1);
+
+        jMenuPersonal.setText("Personal");
+
+        jMenuItemRegistrarEmpleado.setText("Registrar Empleado");
+        jMenuItemRegistrarEmpleado.addActionListener(this::jMenuItemRegistrarEmpleadoActionPerformed);
+        jMenuPersonal.add(jMenuItemRegistrarEmpleado);
+
+        jMenuBar1.add(jMenuPersonal);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
+        // TODO add your handling code here:
+        InternalEditorEmpleado registrarEmpleado = new InternalEditorEmpleado();
+        jDesktopPane1.add(registrarEmpleado);
+        registrarEmpleado.setVisible(true);
+    }// GEN-LAST:event_jMenuItemRegistrarEmpleadoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemRegistrarEmpleado;
+    private javax.swing.JMenu jMenuPersonal;
     // End of variables declaration//GEN-END:variables
 }

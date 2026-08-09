@@ -51,58 +51,26 @@ public class LoginFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jPanelTitulo = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanelFormulario = new javax.swing.JPanel();
+        jPanelUsuario = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldEmpleado = new javax.swing.JTextField();
+        jPanelContrasena = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPasswordFieldContrasenia = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        jPanelBoton = new javax.swing.JPanel();
         jButtonIngresar = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(50, 52, 35));
 
-        jPanel1.setBackground(new java.awt.Color(50, 52, 35));
-        jPanel1.setLayout(new java.awt.GridLayout(1, 3));
-
-        jPanel3.setBackground(new java.awt.Color(50, 52, 35));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 258, Short.MAX_VALUE));
-        jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 382, Short.MAX_VALUE));
-
-        jPanel1.add(jPanel3);
-
-        jPanel2.setBackground(new java.awt.Color(50, 52, 35));
-        jPanel2.setLayout(new java.awt.GridLayout(10, 1, 0, 10));
-
-        jPanel5.setBackground(new java.awt.Color(50, 52, 35));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 258, Short.MAX_VALUE));
-        jPanel5Layout.setVerticalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 29, Short.MAX_VALUE));
-
-        jPanel2.add(jPanel5);
+        jPanelTitulo.setBackground(new java.awt.Color(50, 52, 35));
 
         jLabel4.setBackground(new java.awt.Color(50, 52, 35));
         jLabel4.setFont(new java.awt.Font("Noto Sans CJK JP Black", 1, 15)); // NOI18N
@@ -110,74 +78,57 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Inicio de Sesion");
         jLabel4.setOpaque(true);
-        jPanel2.add(jLabel4);
+        jPanelTitulo.add(jLabel4);
 
-        jPanel8.setBackground(new java.awt.Color(50, 52, 35));
+        getContentPane().add(jPanelTitulo, java.awt.BorderLayout.NORTH);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-                jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 258, Short.MAX_VALUE));
-        jPanel8Layout.setVerticalGroup(
-                jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 29, Short.MAX_VALUE));
+        jPanel2.setBackground(new java.awt.Color(50, 52, 35));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel2.add(jPanel8);
+        jPanelFormulario.setBackground(new java.awt.Color(50, 52, 35));
+        jPanelFormulario.setLayout(new javax.swing.BoxLayout(jPanelFormulario, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanelUsuario.setBackground(new java.awt.Color(50, 52, 35));
+        jPanelUsuario.setLayout(new java.awt.GridLayout(2, 1));
 
         jLabel1.setBackground(new java.awt.Color(50, 52, 35));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario (nombre de usuario o DPI)");
         jLabel1.setOpaque(true);
-        jPanel2.add(jLabel1);
-        jPanel2.add(jTextFieldEmpleado);
+        jPanelUsuario.add(jLabel1);
+
+        jTextFieldEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
+        jPanelUsuario.add(jTextFieldEmpleado);
+
+        jPanelFormulario.add(jPanelUsuario);
+
+        jPanelContrasena.setBackground(new java.awt.Color(50, 52, 35));
+        jPanelContrasena.setLayout(new java.awt.GridLayout(2, 1));
 
         jLabel2.setBackground(new java.awt.Color(50, 52, 35));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contrasenia");
         jLabel2.setOpaque(true);
-        jPanel2.add(jLabel2);
-        jPanel2.add(jPasswordFieldContrasenia);
+        jPanelContrasena.add(jLabel2);
 
-        jLabel3.setBackground(new java.awt.Color(50, 52, 35));
-        jLabel3.setOpaque(true);
-        jPanel2.add(jLabel3);
+        jPasswordFieldContrasenia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
+        jPanelContrasena.add(jPasswordFieldContrasenia);
+
+        jPanelFormulario.add(jPanelContrasena);
+
+        jPanel2.add(jPanelFormulario, new java.awt.GridBagConstraints());
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jPanelBoton.setBackground(new java.awt.Color(50, 52, 35));
 
         jButtonIngresar.setBackground(new java.awt.Color(227, 135, 88));
         jButtonIngresar.setFont(new java.awt.Font("Noto Sans CJK JP Black", 0, 12)); // NOI18N
         jButtonIngresar.setText("Ingresar");
         jButtonIngresar.addActionListener(this::jButtonIngresarActionPerformed);
-        jPanel2.add(jButtonIngresar);
+        jPanelBoton.add(jButtonIngresar);
 
-        jPanel6.setBackground(new java.awt.Color(50, 52, 35));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 258, Short.MAX_VALUE));
-        jPanel6Layout.setVerticalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 29, Short.MAX_VALUE));
-
-        jPanel2.add(jPanel6);
-
-        jPanel1.add(jPanel2);
-
-        jPanel4.setBackground(new java.awt.Color(50, 52, 35));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 258, Short.MAX_VALUE));
-        jPanel4Layout.setVerticalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 382, Short.MAX_VALUE));
-
-        jPanel1.add(jPanel4);
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanelBoton, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -279,15 +230,13 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonIngresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanelBoton;
+    private javax.swing.JPanel jPanelContrasena;
+    private javax.swing.JPanel jPanelFormulario;
+    private javax.swing.JPanel jPanelTitulo;
+    private javax.swing.JPanel jPanelUsuario;
     private javax.swing.JPasswordField jPasswordFieldContrasenia;
     private javax.swing.JTextField jTextFieldEmpleado;
     // End of variables declaration//GEN-END:variables

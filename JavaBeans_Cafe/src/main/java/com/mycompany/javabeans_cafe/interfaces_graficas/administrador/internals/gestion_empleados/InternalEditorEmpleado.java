@@ -200,7 +200,7 @@ public class InternalEditorEmpleado extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
@@ -274,8 +274,7 @@ public class InternalEditorEmpleado extends javax.swing.JInternalFrame {
         jLabelLista.setOpaque(true);
         jPanelDPI13.add(jLabelLista);
 
-        jComboBoxEmpleados.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEmpleados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxEmpleados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
         jPanelDPI13.add(jComboBoxEmpleados);
 
@@ -343,8 +342,7 @@ public class InternalEditorEmpleado extends javax.swing.JInternalFrame {
         jLabelNombreCompleto.setOpaque(true);
         jPanelDPI.add(jLabelNombreCompleto);
 
-        jTextFieldNombreCompleto
-                .setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
+        jTextFieldNombreCompleto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
         jPanelDPI.add(jTextFieldNombreCompleto);
 
         jPanelFormulario.add(jPanelDPI);
@@ -400,8 +398,7 @@ public class InternalEditorEmpleado extends javax.swing.JInternalFrame {
         jLabelSalarioTipoEmpleado.setOpaque(true);
         jPanelDPI5.add(jLabelSalarioTipoEmpleado);
 
-        jComboBoxTipoEmpleado.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxTipoEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
         jPanelDPI5.add(jComboBoxTipoEmpleado);
 
@@ -416,8 +413,7 @@ public class InternalEditorEmpleado extends javax.swing.JInternalFrame {
         jLabelJornadaLaboral.setOpaque(true);
         jPanelDPI6.add(jLabelJornadaLaboral);
 
-        jComboBoxJornadaLaboral.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxJornadaLaboral.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxJornadaLaboral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
         jPanelDPI6.add(jComboBoxJornadaLaboral);
 

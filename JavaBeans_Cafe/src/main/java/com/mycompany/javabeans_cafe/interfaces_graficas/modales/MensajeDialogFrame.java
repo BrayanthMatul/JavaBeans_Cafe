@@ -35,111 +35,62 @@ public class MensajeDialogFrame extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jPanelTitulo = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelDescripcion = new javax.swing.JLabel();
+        jPanelBoton = new javax.swing.JPanel();
         jButtonAceptar = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel1.setBackground(new java.awt.Color(50, 52, 35));
-        jPanel1.setLayout(new java.awt.GridLayout(1, 3));
-
-        jPanel3.setBackground(new java.awt.Color(50, 52, 35));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 207, Short.MAX_VALUE));
-        jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 241, Short.MAX_VALUE));
-
-        jPanel1.add(jPanel3);
-
-        jPanel2.setBackground(new java.awt.Color(50, 52, 35));
-        jPanel2.setLayout(new java.awt.GridLayout(0, 1, 0, 10));
-
-        jPanel5.setBackground(new java.awt.Color(50, 52, 35));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 207, Short.MAX_VALUE));
-        jPanel5Layout.setVerticalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 40, Short.MAX_VALUE));
-
-        jPanel2.add(jPanel5);
+        jPanelTitulo.setBackground(new java.awt.Color(50, 52, 35));
 
         jLabelTitulo.setBackground(new java.awt.Color(50, 52, 35));
         jLabelTitulo.setFont(new java.awt.Font("Noto Sans CJK JP Black", 1, 15)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(227, 135, 88));
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Inicio de Sesion");
+        jLabelTitulo.setText("Titulo");
         jLabelTitulo.setOpaque(true);
-        jPanel2.add(jLabelTitulo);
+        jPanelTitulo.add(jLabelTitulo);
+
+        getContentPane().add(jPanelTitulo, java.awt.BorderLayout.NORTH);
 
         jLabelDescripcion.setBackground(new java.awt.Color(50, 52, 35));
         jLabelDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDescripcion.setText("Descripcion");
         jLabelDescripcion.setOpaque(true);
-        jPanel2.add(jLabelDescripcion);
+        getContentPane().add(jLabelDescripcion, java.awt.BorderLayout.CENTER);
+
+        jPanelBoton.setBackground(new java.awt.Color(50, 52, 35));
 
         jButtonAceptar.setBackground(new java.awt.Color(227, 135, 88));
         jButtonAceptar.setFont(new java.awt.Font("Noto Sans CJK JP Black", 0, 12)); // NOI18N
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(this::jButtonAceptarActionPerformed);
-        jPanel2.add(jButtonAceptar);
+        jPanelBoton.add(jButtonAceptar);
 
-        jPanel6.setBackground(new java.awt.Color(50, 52, 35));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 207, Short.MAX_VALUE));
-        jPanel6Layout.setVerticalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 40, Short.MAX_VALUE));
-
-        jPanel2.add(jPanel6);
-
-        jPanel1.add(jPanel2);
-
-        jPanel4.setBackground(new java.awt.Color(50, 52, 35));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 207, Short.MAX_VALUE));
-        jPanel4Layout.setVerticalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 241, Short.MAX_VALUE));
-
-        jPanel1.add(jPanel4);
-
-        getContentPane().add(jPanel1);
+        getContentPane().add(jPanelBoton, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarMensaje(boolean isError, String descripcion) {
         jLabelTitulo.setText(isError ? "Error" : "Exito");
-        jLabelDescripcion.setText(descripcion);
+        jLabelDescripcion.setText(
+        "<html><div style='width:220px; text-align:center;'>"
+        + descripcion
+        + "</div></html>"
+        );
+
+        jLabelDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        pack();
+        
+        setLocationRelativeTo(null);
+        
     }
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAceptarActionPerformed
@@ -150,11 +101,7 @@ public class MensajeDialogFrame extends javax.swing.JDialog {
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JLabel jLabelDescripcion;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanelBoton;
+    private javax.swing.JPanel jPanelTitulo;
     // End of variables declaration//GEN-END:variables
 }

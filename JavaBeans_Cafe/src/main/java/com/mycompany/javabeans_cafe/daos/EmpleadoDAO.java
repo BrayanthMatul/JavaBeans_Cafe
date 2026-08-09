@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mycompany.javabeans_cafe.db.ConexionBD;
 import com.mycompany.javabeans_cafe.enums.EmpleadoRol;
@@ -87,6 +89,94 @@ public class EmpleadoDAO {
                     "Error al obtener datos SQL de empleado por DPI: " + e.getMessage());
         }
         return null;
+    }
+
+    public List<Empleado> obtenerTodos() throws SQLException {
+        String query = "SELECT * FROM empleado";
+
+        List<Empleado> empleados = new ArrayList<>();
+
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                empleados.add(convertirAEmpleado(resultSet));
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException(
+                    "Error al obtener empleados: " + e.getMessage(),
+                    e);
+        }
+
+        return empleados;
+    }
+
+    public List<Empleado> obtenerTodosExceptoRol(EmpleadoRol rolExcluido)
+            throws SQLException {
+
+        String query = "SELECT * FROM empleado WHERE rol <> ?";
+
+        List<Empleado> empleados = new ArrayList<>();
+
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+
+            preparedStatement.setString(
+                    1,
+                    rolExcluido.getTipoEmpleado());
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    empleados.add(convertirAEmpleado(resultSet));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException(
+                    "Error al obtener empleados excluyendo el rol "
+                            + rolExcluido + ": " + e.getMessage(),
+                    e);
+        }
+
+        return empleados;
+    }
+
+    public void actualizarEmpleado(Empleado empleado) throws SQLException {
+        String query = "UPDATE empleado SET dpi = ?, nombre_completo = ?, nombre_usuario = ?, contrasena = ?, rol = ?, jornada_laboral = ?, salario = ? WHERE codigo_empleado = ?";
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, empleado.getDpi());
+            preparedStatement.setString(2, empleado.getNombreCompleto());
+            preparedStatement.setString(3, empleado.getNombreUsuario());
+            preparedStatement.setString(4, empleado.getContrasena());
+            preparedStatement.setString(5, empleado.getRol().getTipoEmpleado());
+            preparedStatement.setString(6, empleado.getJornadaLaboral().getJornada());
+            preparedStatement.setBigDecimal(7, empleado.getSalario());
+            preparedStatement.setInt(8, empleado.getCodigoEmpleado());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar empleado en la base de datos: " + e.getMessage());
+        }
+    }
+
+    private Empleado convertirAEmpleado(ResultSet resultSet)
+            throws SQLException {
+
+        return new Empleado(
+                resultSet.getInt("codigo_empleado"),
+                resultSet.getString("dpi"),
+                resultSet.getString("nombre_completo"),
+                resultSet.getString("nombre_usuario"),
+                resultSet.getString("contrasena"),
+                obtenerRolEmpleado(resultSet.getString("rol")),
+                obtenerJornadaLaboral(
+                        resultSet.getString("jornada_laboral")),
+                resultSet.getBigDecimal("salario"),
+                resultSet.getDate("fecha_de_contratacion").toLocalDate(),
+                resultSet.getBoolean("activo"));
     }
 
     // CREATE TABLE

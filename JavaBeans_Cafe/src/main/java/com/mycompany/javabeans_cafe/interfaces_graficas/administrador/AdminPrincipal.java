@@ -7,6 +7,7 @@ package com.mycompany.javabeans_cafe.interfaces_graficas.administrador;
 import com.mycompany.javabeans_cafe.interfaces_graficas.LoginFrame;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalDesactivarEmpleado;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalEditorEmpleado;
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalListaEmpleados;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalRegistroEmpleado;
 import javax.swing.JInternalFrame;
 
@@ -48,6 +49,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemRegistrarEmpleado = new javax.swing.JMenuItem();
         jMenuIemEditarEmpleado = new javax.swing.JMenuItem();
         jMenuItemActivarDesactivar = new javax.swing.JMenuItem();
+        jMenuItemListaEmpleados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -80,6 +82,10 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemActivarDesactivar.addActionListener(this::jMenuItemActivarDesactivarActionPerformed);
         jMenuPersonal.add(jMenuItemActivarDesactivar);
 
+        jMenuItemListaEmpleados.setText("Lista de Empleados");
+        jMenuItemListaEmpleados.addActionListener(this::jMenuItemListaEmpleadosActionPerformed);
+        jMenuPersonal.add(jMenuItemListaEmpleados);
+
         jMenuBar1.add(jMenuPersonal);
 
         setJMenuBar(jMenuBar1);
@@ -107,6 +113,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
         loginFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItemCerrarSesionActionPerformed
 
+    private void jMenuItemListaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListaEmpleadosActionPerformed
+         this.cerrarVentanasInternas();
+        InternalListaEmpleados listaEmpleados = new InternalListaEmpleados();
+        jDesktopPane1.add(listaEmpleados);
+        listaEmpleados.setVisible(true);
+    }//GEN-LAST:event_jMenuItemListaEmpleadosActionPerformed
+
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
         InternalRegistroEmpleado registrarEmpleado = new InternalRegistroEmpleado();
@@ -128,6 +141,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemActivarDesactivar;
     private javax.swing.JMenuItem jMenuItemCerrarSesion;
+    private javax.swing.JMenuItem jMenuItemListaEmpleados;
     private javax.swing.JMenuItem jMenuItemRegistrarEmpleado;
     private javax.swing.JMenu jMenuPersonal;
     // End of variables declaration//GEN-END:variables

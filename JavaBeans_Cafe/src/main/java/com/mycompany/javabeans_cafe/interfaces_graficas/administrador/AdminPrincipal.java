@@ -4,6 +4,7 @@
  */
 package com.mycompany.javabeans_cafe.interfaces_graficas.administrador;
 
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalDesactivarEmpleado;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalEditorEmpleado;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalRegistroEmpleado;
 import javax.swing.JInternalFrame;
@@ -41,7 +42,8 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuPersonal = new javax.swing.JMenu();
         jMenuItemRegistrarEmpleado = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuIemEditarEmpleado = new javax.swing.JMenuItem();
+        jMenuItemActivarDesactivar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -55,9 +57,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemRegistrarEmpleado.addActionListener(this::jMenuItemRegistrarEmpleadoActionPerformed);
         jMenuPersonal.add(jMenuItemRegistrarEmpleado);
 
-        jMenuItem1.setText("Editar Empleado");
-        jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
-        jMenuPersonal.add(jMenuItem1);
+        jMenuIemEditarEmpleado.setText("Editar Empleado");
+        jMenuIemEditarEmpleado.addActionListener(this::jMenuIemEditarEmpleadoActionPerformed);
+        jMenuPersonal.add(jMenuIemEditarEmpleado);
+
+        jMenuItemActivarDesactivar.setText("Activar / Desactivar");
+        jMenuItemActivarDesactivar.addActionListener(this::jMenuItemActivarDesactivarActionPerformed);
+        jMenuPersonal.add(jMenuItemActivarDesactivar);
 
         jMenuBar1.add(jMenuPersonal);
 
@@ -66,12 +72,19 @@ public class AdminPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuIemEditarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIemEditarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
         InternalEditorEmpleado editorEmpleado = new InternalEditorEmpleado();
         jDesktopPane1.add(editorEmpleado);
        editorEmpleado.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuIemEditarEmpleadoActionPerformed
+
+    private void jMenuItemActivarDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemActivarDesactivarActionPerformed
+        this.cerrarVentanasInternas();
+        InternalDesactivarEmpleado activarDesactivar = new InternalDesactivarEmpleado();
+        jDesktopPane1.add(activarDesactivar);
+        activarDesactivar.setVisible(true);
+    }//GEN-LAST:event_jMenuItemActivarDesactivarActionPerformed
 
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
@@ -89,7 +102,8 @@ public class AdminPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuIemEditarEmpleado;
+    private javax.swing.JMenuItem jMenuItemActivarDesactivar;
     private javax.swing.JMenuItem jMenuItemRegistrarEmpleado;
     private javax.swing.JMenu jMenuPersonal;
     // End of variables declaration//GEN-END:variables

@@ -36,6 +36,18 @@ public class RecolectorDeDatos {
         }
     }
 
+    public BigDecimal recolectarBigDecimals(JTextField numeroCampo)
+            throws TextoVacioException, NumeroInvalidoException {
+
+        String texto = obtenerTextoNoVacio(numeroCampo);
+
+        try {
+            return new BigDecimal(numeroCampo.getText());
+        } catch (NumberFormatException e) {
+            throw new NumeroInvalidoException();
+        }
+    }
+
     private String obtenerTextoNoVacio(JTextComponent campo)
             throws TextoVacioException {
 
@@ -48,11 +60,4 @@ public class RecolectorDeDatos {
         return texto.strip();
     }
 
-    public BigDecimal recolectarBigDecimals(JTextField jTextFieldSalario) throws NumeroInvalidoException {
-        try {
-            return new BigDecimal(jTextFieldSalario.getText());
-        } catch (NumberFormatException e) {
-            throw new NumeroInvalidoException();
-        }
-    }
 }

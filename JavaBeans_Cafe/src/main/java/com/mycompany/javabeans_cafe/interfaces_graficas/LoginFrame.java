@@ -28,7 +28,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private boolean errorEnRecolector;
     private boolean errorEnUsuario;
     private boolean errorEnContrasenia;
-    private boolean errorEnValidacion;
     private String credencialIngresada;
     private String contrasenia;
 
@@ -51,7 +50,8 @@ public class LoginFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanelTitulo = new javax.swing.JPanel();
@@ -111,7 +111,8 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setOpaque(true);
         jPanelContrasena.add(jLabel2);
 
-        jPasswordFieldContrasenia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
+        jPasswordFieldContrasenia
+                .setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 135, 88)));
         jPanelContrasena.add(jPasswordFieldContrasenia);
 
         jPanelFormulario.add(jPanelContrasena);
@@ -174,6 +175,13 @@ public class LoginFrame extends javax.swing.JFrame {
 
         try {
             Empleado empleado = empleadoDAO.encontrarPorNombreUsuario(credencialIngresada);
+
+            if (empleado != null && empleado.isActivo() == false) {
+                String mensajeError = "El usuario ha sido desactivado. Por favor, contacte al administrador.";
+                MensajeDialogFrame mensajeErrorFrame = new MensajeDialogFrame(null, true, mensajeError, true);
+                mensajeErrorFrame.setVisible(true);
+                return;
+            }
 
             if (empleado == null) {
                 empleado = empleadoDAO.encontrarPorDPI(credencialIngresada);

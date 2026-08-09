@@ -4,6 +4,7 @@
  */
 package com.mycompany.javabeans_cafe.interfaces_graficas.administrador;
 
+import com.mycompany.javabeans_cafe.interfaces_graficas.LoginFrame;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalDesactivarEmpleado;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalEditorEmpleado;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_empleados.InternalRegistroEmpleado;
@@ -40,6 +41,9 @@ public class AdminPrincipal extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemCerrarSesion = new javax.swing.JMenuItem();
         jMenuPersonal = new javax.swing.JMenu();
         jMenuItemRegistrarEmpleado = new javax.swing.JMenuItem();
         jMenuIemEditarEmpleado = new javax.swing.JMenuItem();
@@ -50,6 +54,17 @@ public class AdminPrincipal extends javax.swing.JFrame {
 
         jDesktopPane1.setLayout(new javax.swing.BoxLayout(jDesktopPane1, javax.swing.BoxLayout.LINE_AXIS));
         getContentPane().add(jDesktopPane1);
+
+        jMenu1.setText("Sesion");
+
+        jMenuItem1.setText("Mi Cuenta");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItemCerrarSesion.setText("Cerrar Sesion");
+        jMenuItemCerrarSesion.addActionListener(this::jMenuItemCerrarSesionActionPerformed);
+        jMenu1.add(jMenuItemCerrarSesion);
+
+        jMenuBar1.add(jMenu1);
 
         jMenuPersonal.setText("Personal");
 
@@ -86,6 +101,12 @@ public class AdminPrincipal extends javax.swing.JFrame {
         activarDesactivar.setVisible(true);
     }//GEN-LAST:event_jMenuItemActivarDesactivarActionPerformed
 
+    private void jMenuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCerrarSesionActionPerformed
+        this.dispose();
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCerrarSesionActionPerformed
+
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
         InternalRegistroEmpleado registrarEmpleado = new InternalRegistroEmpleado();
@@ -101,9 +122,12 @@ public class AdminPrincipal extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuIemEditarEmpleado;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemActivarDesactivar;
+    private javax.swing.JMenuItem jMenuItemCerrarSesion;
     private javax.swing.JMenuItem jMenuItemRegistrarEmpleado;
     private javax.swing.JMenu jMenuPersonal;
     // End of variables declaration//GEN-END:variables

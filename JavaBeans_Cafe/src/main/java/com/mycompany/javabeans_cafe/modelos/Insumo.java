@@ -28,4 +28,54 @@ public class Insumo {
         this.stockMinimo = stockMinimo;
         this.costoInsumo = costoInsumo;
     }
+
+    public int getCodigoInsumo() {
+        return codigoInsumo;
+    }
+
+    public void setCodigoInsumo(int codigoInsumo) {
+        this.codigoInsumo = codigoInsumo;
+    }
+
+    public String getNombreInsumo() {
+        return nombreInsumo;
+    }
+
+    public void setNombreInsumo(String nombreInsumo) {
+        this.nombreInsumo = nombreInsumo;
+    }
+
+    public String getUnidadMedida() {
+        return unidadMedida;
+    }
+
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
+    }
+
+    public int getStockActual() {
+        return stockActual;
+    }
+
+    public void setStockActual(int stockActual) {
+        this.stockActual = stockActual;
+    }
+
+    public int getStockMinimo() {
+        return stockMinimo;
+    }
+
+    public void setStockMinimo(int stockMinimo) {
+        this.stockMinimo = stockMinimo;
+    }
+
+    public BigDecimal getCostoInsumo() {
+        return costoInsumo;
+    }
+
+    public void setCostoInsumo(BigDecimal costoInsumo) {
+        this.costoInsumo = costoInsumo;
+    }
+    
+    
 }

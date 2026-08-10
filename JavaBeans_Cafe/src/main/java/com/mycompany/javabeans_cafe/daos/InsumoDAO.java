@@ -82,7 +82,7 @@ public class InsumoDAO {
             throw new SQLException("Error al actualizar el insumo en la base de datos: " + e.getMessage());
         }
     }
-    
+
     public void aumentarStock(Connection conexion, int codigoInsumo, int cantidad) throws SQLException {
         String query = "UPDATE insumo SET stock_actual = stock_actual + ? WHERE codigo_insumo = ?";
 
@@ -93,6 +93,22 @@ public class InsumoDAO {
         } catch (SQLException e) {
             throw new SQLException("Error al aumentar el stock del insumo: " + e.getMessage());
         }
+    }
+
+    public List<Insumo> obtenerConStockBajo() throws SQLException {
+        String query = "SELECT * FROM insumo WHERE stock_actual <= stock_minimo";
+        List<Insumo> insumos = new ArrayList<>();
+
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                insumos.add(convertirAInsumo(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Error al obtener los insumos con bajo stock: " + e.getMessage());
+        }
+        return insumos;
     }
 
     private Insumo convertirAInsumo(ResultSet resultSet) throws SQLException {

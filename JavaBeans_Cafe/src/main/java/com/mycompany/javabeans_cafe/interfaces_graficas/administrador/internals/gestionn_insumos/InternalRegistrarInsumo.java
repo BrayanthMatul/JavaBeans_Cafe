@@ -150,7 +150,7 @@ public class InternalRegistrarInsumo extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanelTitulo = new javax.swing.JPanel();
@@ -266,7 +266,7 @@ public class InternalRegistrarInsumo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRealizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRealizarActionPerformed
+    private void jButtonRealizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarActionPerformed
         recolectarDatosInsumo();
 
         if (errorEnRecolector) {
@@ -280,7 +280,7 @@ public class InternalRegistrarInsumo extends javax.swing.JInternalFrame {
         }
 
         guardarInsumo();
-    }// GEN-LAST:event_jButtonRealizarActionPerformed
+    }//GEN-LAST:event_jButtonRealizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRealizar;

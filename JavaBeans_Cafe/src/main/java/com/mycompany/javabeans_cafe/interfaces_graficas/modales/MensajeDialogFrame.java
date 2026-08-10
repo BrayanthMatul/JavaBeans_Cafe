@@ -26,6 +26,14 @@ public class MensajeDialogFrame extends javax.swing.JDialog {
 
         mostrarMensaje(isError, mensaje);
     }
+    
+    public MensajeDialogFrame(java.awt.Frame parent, boolean modal, String mensaje) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+
+        mostrarMensaje(mensaje);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,6 +87,22 @@ public class MensajeDialogFrame extends javax.swing.JDialog {
 
     private void mostrarMensaje(boolean isError, String descripcion) {
         jLabelTitulo.setText(isError ? "Error" : "Exito");
+        jLabelDescripcion.setText(
+        "<html><div style='width:220px; text-align:center;'>"
+        + descripcion
+        + "</div></html>"
+        );
+
+        jLabelDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        pack();
+        
+        setLocationRelativeTo(null);
+        
+    }
+    
+    private void mostrarMensaje(String descripcion) {
+        jLabelTitulo.setText("Informacion");
         jLabelDescripcion.setText(
         "<html><div style='width:220px; text-align:center;'>"
         + descripcion

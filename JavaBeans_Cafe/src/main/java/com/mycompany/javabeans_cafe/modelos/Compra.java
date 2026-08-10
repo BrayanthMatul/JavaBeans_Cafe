@@ -29,4 +29,54 @@ public class Compra {
         this.monto = monto;
         this.contabilizado = contabilizado;
     }
+
+    public int getCodigoCompra() {
+        return codigoCompra;
+    }
+
+    public void setCodigoCompra(int codigoCompra) {
+        this.codigoCompra = codigoCompra;
+    }
+
+    public int getCodigoInsumo() {
+        return codigoInsumo;
+    }
+
+    public void setCodigoInsumo(int codigoInsumo) {
+        this.codigoInsumo = codigoInsumo;
+    }
+
+    public Timestamp getFechaCompra() {
+        return fechaCompra;
+    }
+
+    public void setFechaCompra(Timestamp fechaCompra) {
+        this.fechaCompra = fechaCompra;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public BigDecimal getMonto() {
+        return monto;
+    }
+
+    public void setMonto(BigDecimal monto) {
+        this.monto = monto;
+    }
+
+    public boolean isContabilizado() {
+        return contabilizado;
+    }
+
+    public void setContabilizado(boolean contabilizado) {
+        this.contabilizado = contabilizado;
+    }
+    
+    
 }

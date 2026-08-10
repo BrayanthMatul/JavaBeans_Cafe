@@ -82,6 +82,18 @@ public class InsumoDAO {
             throw new SQLException("Error al actualizar el insumo en la base de datos: " + e.getMessage());
         }
     }
+    
+    public void aumentarStock(Connection conexion, int codigoInsumo, int cantidad) throws SQLException {
+        String query = "UPDATE insumo SET stock_actual = stock_actual + ? WHERE codigo_insumo = ?";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setInt(1, cantidad);
+            preparedStatement.setInt(2, codigoInsumo);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al aumentar el stock del insumo: " + e.getMessage());
+        }
+    }
 
     private Insumo convertirAInsumo(ResultSet resultSet) throws SQLException {
         return new Insumo(

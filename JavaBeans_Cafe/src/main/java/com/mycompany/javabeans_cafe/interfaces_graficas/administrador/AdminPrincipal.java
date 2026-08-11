@@ -16,6 +16,7 @@ import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestionn_insumos.InternalRegistrarInsumo;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalEditarMesa;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalRegistrarMesa;
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalVisualizadorMesas;
 import javax.swing.JInternalFrame;
 
 /**
@@ -66,6 +67,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuMesas = new javax.swing.JMenu();
         jMenuItemRegistrarMesa = new javax.swing.JMenuItem();
         jMenuItemEditarMesa = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -137,6 +139,10 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemEditarMesa.setText("Editar Mesa");
         jMenuItemEditarMesa.addActionListener(this::jMenuItemEditarMesaActionPerformed);
         jMenuMesas.add(jMenuItemEditarMesa);
+
+        jMenuItem2.setText("Ver Mesas");
+        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
+        jMenuMesas.add(jMenuItem2);
 
         jMenuBar1.add(jMenuMesas);
 
@@ -221,6 +227,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
         editarMesa.setVisible(true);
     }//GEN-LAST:event_jMenuItemEditarMesaActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        this.cerrarVentanasInternas();
+        InternalVisualizadorMesas visualizadorMesas = new InternalVisualizadorMesas();
+        jDesktopPane1.add(visualizadorMesas);
+        visualizadorMesas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
         InternalRegistroEmpleado registrarEmpleado = new InternalRegistroEmpleado();
@@ -241,6 +254,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuIemEditarEmpleado;
     private javax.swing.JMenu jMenuInventario;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemActivarDesactivar;
     private javax.swing.JMenuItem jMenuItemCerrarSesion;
     private javax.swing.JMenuItem jMenuItemEditarInsumo;

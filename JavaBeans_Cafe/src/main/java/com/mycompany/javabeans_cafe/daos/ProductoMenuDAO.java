@@ -54,6 +54,21 @@ public class ProductoMenuDAO {
         return productos;
     }
 
+    public void actualizarProducto(ProductoMenu producto) throws SQLException {
+        String query = "UPDATE producto_menu SET nombre_producto = ?, categoria = ?, precio_venta = ?, imagen = ? WHERE codigo_producto = ?";
+
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+
+            preparedStatement.setString(1, producto.getNombreProducto());
+            preparedStatement.setString(2, producto.getCategoria().name());
+            preparedStatement.setBigDecimal(3, producto.getPrecioVenta());
+            preparedStatement.setBytes(4, producto.getImagen());
+            preparedStatement.setInt(5, producto.getCodigoProducto());
+            preparedStatement.executeUpdate();
+        }
+    }
+
     private ProductoMenu convertirAProducto(ResultSet resultSet) throws SQLException {
         return new ProductoMenu(
                 resultSet.getInt("codigo_producto"),

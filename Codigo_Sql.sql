@@ -75,7 +75,7 @@ CREATE TABLE insumo_producto (
     id INT PRIMARY KEY AUTO_INCREMENT,
     codigo_insumo INT NOT NULL,
     codigo_producto INT NOT NULL,
-    cantidad INT NOT NULL,
+    cantidad DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (codigo_insumo) REFERENCES insumo(codigo_insumo),
     FOREIGN KEY (codigo_producto) REFERENCES producto_menu(codigo_producto),
     UNIQUE (codigo_insumo, codigo_producto)

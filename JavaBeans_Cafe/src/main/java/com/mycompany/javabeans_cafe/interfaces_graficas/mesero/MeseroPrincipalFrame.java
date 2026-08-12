@@ -4,6 +4,9 @@
  */
 package com.mycompany.javabeans_cafe.interfaces_graficas.mesero;
 
+import com.mycompany.javabeans_cafe.interfaces_graficas.LoginFrame;
+import com.mycompany.javabeans_cafe.modelos.Empleado;
+
 /**
  *
  * @author matul
@@ -12,12 +15,13 @@ public class MeseroPrincipalFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MeseroPrincipalFrame.class.getName());
 
+    private static Empleado meseroLogueado;
     /**
      * Creates new form MeseroPrincipalFrame
      */
-    public MeseroPrincipalFrame() {
+    public MeseroPrincipalFrame(Empleado mesero) {
         initComponents();
-        System.out.println("Ingreso a mesero");
+        this.meseroLogueado = mesero;
     }
 
     /**
@@ -29,34 +33,61 @@ public class MeseroPrincipalFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemCerrarSesion = new javax.swing.JMenuItem();
+        jMenuPersonal = new javax.swing.JMenu();
+        jMenuItemAbrirCuenta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Hola, Mesero");
+        jDesktopPane1.setLayout(new javax.swing.BoxLayout(jDesktopPane1, javax.swing.BoxLayout.LINE_AXIS));
+        getContentPane().add(jDesktopPane1, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(jButton1)
-                .addContainerGap(143, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(97, 97, 97))
-        );
+        jMenu1.setText("Sesion");
+
+        jMenuItem1.setText("Mi Cuenta");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItemCerrarSesion.setText("Cerrar Sesion");
+        jMenuItemCerrarSesion.addActionListener(this::jMenuItemCerrarSesionActionPerformed);
+        jMenu1.add(jMenuItemCerrarSesion);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenuPersonal.setText("Cuentas");
+
+        jMenuItemAbrirCuenta.setText("Abrir cuenta");
+        jMenuItemAbrirCuenta.addActionListener(this::jMenuItemAbrirCuentaActionPerformed);
+        jMenuPersonal.add(jMenuItemAbrirCuenta);
+
+        jMenuBar1.add(jMenuPersonal);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCerrarSesionActionPerformed
+        this.dispose();
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCerrarSesionActionPerformed
+
+    private void jMenuItemAbrirCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemAbrirCuentaActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemAbrirCuenta;
+    private javax.swing.JMenuItem jMenuItemCerrarSesion;
+    private javax.swing.JMenu jMenuPersonal;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,7 +29,7 @@ public class PanelProductoMenu extends javax.swing.JPanel {
     private void actualizarInformacionProducto() {
         jLabelTitulo.setText(producto.getNombreProducto());
         jLabelPrecio.setText("Q. " + producto.getPrecioVenta().toString());
-        jLabelImagen.setSize(100, 100); 
+        jLabelImagen.setSize(70, 70); 
         mostrarImagen(producto.getImagen());
     }
 
@@ -68,7 +68,7 @@ public class PanelProductoMenu extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jLabelTitulo.setBackground(new java.awt.Color(50, 52, 35));
-        jLabelTitulo.setFont(new java.awt.Font("Noto Sans CJK JP Black", 1, 15)); // NOI18N
+        jLabelTitulo.setFont(new java.awt.Font("Noto Sans CJK JP Black", 1, 12)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Nombre producto");
@@ -84,7 +84,7 @@ public class PanelProductoMenu extends javax.swing.JPanel {
         add(jLabelImagen, java.awt.BorderLayout.CENTER);
 
         jLabelPrecio.setBackground(new java.awt.Color(50, 52, 35));
-        jLabelPrecio.setFont(new java.awt.Font("Noto Sans CJK JP Black", 1, 15)); // NOI18N
+        jLabelPrecio.setFont(new java.awt.Font("Noto Sans CJK JP Black", 1, 14)); // NOI18N
         jLabelPrecio.setForeground(new java.awt.Color(255, 255, 255));
         jLabelPrecio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPrecio.setText("Q. 10.00");

@@ -4,13 +4,18 @@
  */
 package com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_menu;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
+import javax.swing.JFileChooser;
 
 import com.mycompany.javabeans_cafe.daos.ProductoMenuDAO;
 import com.mycompany.javabeans_cafe.enums.CategoriaProducto;
 import com.mycompany.javabeans_cafe.interfaces_graficas.modales.MensajeDialogFrame;
 import com.mycompany.javabeans_cafe.modelos.ProductoMenu;
+import com.mycompany.javabeans_cafe.util.ExportadorMenuHTML;
 
 /**
  *
@@ -153,6 +158,8 @@ public class InternalVisulizarMenu extends javax.swing.JInternalFrame {
         jLabelTitulo4 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jPanelParaComidas = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jButtonExportarMenu = new javax.swing.JButton();
 
         jPanel.setBackground(new java.awt.Color(50, 52, 35));
         jPanel.setLayout(new java.awt.BorderLayout());
@@ -183,7 +190,10 @@ public class InternalVisulizarMenu extends javax.swing.JInternalFrame {
         jLabelTitulo1.setOpaque(true);
         jPanel1.add(jLabelTitulo1, java.awt.BorderLayout.NORTH);
 
-        jPanelParaBebidasCalientes.setLayout(new java.awt.GridLayout(0, 6, 10, 10));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setToolTipText("");
+
+        jPanelParaBebidasCalientes.setLayout(new java.awt.GridLayout(0, 4, 10, 10));
         jScrollPane1.setViewportView(jPanelParaBebidasCalientes);
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -200,7 +210,9 @@ public class InternalVisulizarMenu extends javax.swing.JInternalFrame {
         jLabelTitulo2.setOpaque(true);
         jPanel2.add(jLabelTitulo2, java.awt.BorderLayout.NORTH);
 
-        jPanelParaBebidasFrias.setLayout(new java.awt.GridLayout(0, 6, 10, 10));
+        jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanelParaBebidasFrias.setLayout(new java.awt.GridLayout(0, 4, 10, 10));
         jScrollPane5.setViewportView(jPanelParaBebidasFrias);
 
         jPanel2.add(jScrollPane5, java.awt.BorderLayout.CENTER);
@@ -217,7 +229,9 @@ public class InternalVisulizarMenu extends javax.swing.JInternalFrame {
         jLabelTitulo3.setOpaque(true);
         jPanel3.add(jLabelTitulo3, java.awt.BorderLayout.NORTH);
 
-        jPanelParaPostres.setLayout(new java.awt.GridLayout(0, 6, 10, 10));
+        jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanelParaPostres.setLayout(new java.awt.GridLayout(0, 4, 10, 10));
         jScrollPane6.setViewportView(jPanelParaPostres);
 
         jPanel3.add(jScrollPane6, java.awt.BorderLayout.CENTER);
@@ -234,7 +248,9 @@ public class InternalVisulizarMenu extends javax.swing.JInternalFrame {
         jLabelTitulo4.setOpaque(true);
         jPanel4.add(jLabelTitulo4, java.awt.BorderLayout.NORTH);
 
-        jPanelParaComidas.setLayout(new java.awt.GridLayout(0, 6, 10, 10));
+        jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanelParaComidas.setLayout(new java.awt.GridLayout(0, 4, 10, 10));
         jScrollPane7.setViewportView(jPanelParaComidas);
 
         jPanel4.add(jScrollPane7, java.awt.BorderLayout.CENTER);
@@ -243,13 +259,55 @@ public class InternalVisulizarMenu extends javax.swing.JInternalFrame {
 
         jPanel.add(jPanelVisualizador, java.awt.BorderLayout.CENTER);
 
+        jPanel5.setBackground(new java.awt.Color(50, 52, 35));
+
+        jButtonExportarMenu.setBackground(new java.awt.Color(227, 135, 88));
+        jButtonExportarMenu.setFont(new java.awt.Font("Noto Sans CJK JP Black", 0, 12)); // NOI18N
+        jButtonExportarMenu.setText("Exportar Menu");
+        jButtonExportarMenu.addActionListener(this::jButtonExportarMenuActionPerformed);
+        jPanel5.add(jButtonExportarMenu);
+
+        jPanel.add(jPanel5, java.awt.BorderLayout.SOUTH);
+
         getContentPane().add(jPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonExportarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarMenuActionPerformed
+        seleccionarRutaArchivoYGuardar();
+    }//GEN-LAST:event_jButtonExportarMenuActionPerformed
+
+    private void seleccionarRutaArchivoYGuardar() {
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setDialogTitle("Guardar Menú como HTML");
+        fileChooser.setSelectedFile(new java.io.File("menu.html"));
+
+        int resultado = fileChooser.showSaveDialog(this);
+
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+           File archivo = fileChooser.getSelectedFile();
+            if (!archivo.getName().toLowerCase().endsWith(".html")) {
+                archivo = new File(archivo.getAbsolutePath() + ".html");
+            }
+
+            try {
+                ExportadorMenuHTML exportador = new ExportadorMenuHTML(bebidasCalientes, bebidasFrias, postres, comidas);
+                exportador.exportar(archivo);
+                String mensajeExito = "Menú exportado exitosamente";
+                MensajeDialogFrame mensajeDialog = new MensajeDialogFrame(null, true, mensajeExito, false);
+                mensajeDialog.setVisible(true);
+            } catch (IOException e) {
+                String mensajeError = "Error al exportar el menú: " + e.getMessage();
+                mostrarMensajeError(mensajeError);
+            }
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonExportarMenu;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTitulo1;
     private javax.swing.JLabel jLabelTitulo2;
@@ -260,6 +318,7 @@ public class InternalVisulizarMenu extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelParaBebidasCalientes;
     private javax.swing.JPanel jPanelParaBebidasFrias;
     private javax.swing.JPanel jPanelParaComidas;

@@ -69,6 +69,23 @@ public class ProductoMenuDAO {
         }
     }
 
+    public List<ProductoMenu> obtenerProductosPorCategoria(CategoriaProducto categoria) throws SQLException {
+        List<ProductoMenu> productosFiltrados = new ArrayList<>();
+        String query = "SELECT * FROM producto_menu WHERE categoria = ?";
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, categoria.name());
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    productosFiltrados.add(convertirAProducto(resultSet));
+                }
+
+            }
+        }
+        return productosFiltrados;
+    }
+
     private ProductoMenu convertirAProducto(ResultSet resultSet) throws SQLException {
         return new ProductoMenu(
                 resultSet.getInt("codigo_producto"),

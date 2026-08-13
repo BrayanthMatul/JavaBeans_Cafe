@@ -1,7 +1,10 @@
 package com.mycompany.javabeans_cafe.daos;
 
 import com.mycompany.javabeans_cafe.db.ConexionBD;
+import com.mycompany.javabeans_cafe.exceptions.StockInsuficienteException;
 import com.mycompany.javabeans_cafe.modelos.Insumo;
+
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,6 +86,29 @@ public class InsumoDAO {
         }
     }
 
+    public void disminuirStock(Connection conexion, int codigoInsumo, BigDecimal cantidad)
+            throws SQLException, StockInsuficienteException {
+        String query = "UPDATE insumo SET stock_actual = stock_actual - ? WHERE codigo_insumo = ? AND stock_actual >= ? ";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setBigDecimal(1, cantidad);
+            preparedStatement.setInt(2, codigoInsumo);
+            preparedStatement.setBigDecimal(3, cantidad);
+            int filasAfectadas = preparedStatement.executeUpdate();
+
+            if (filasAfectadas == 0) {
+                throw new StockInsuficienteException(
+                        "Stock insuficiente para confirmar la operación. No se pudo disminuir el stock del insumo con código: "
+                                + codigoInsumo);
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException(
+                    "Error al disminuir el stock del insumo: "
+                            + e.getMessage());
+        }
+    }
+
     public void aumentarStock(Connection conexion, int codigoInsumo, int cantidad) throws SQLException {
         String query = "UPDATE insumo SET stock_actual = stock_actual + ? WHERE codigo_insumo = ?";
 
@@ -109,6 +135,21 @@ public class InsumoDAO {
             throw new SQLException("Error al obtener los insumos con bajo stock: " + e.getMessage());
         }
         return insumos;
+    }
+
+    public BigDecimal obtenerStockParaActualizar(Connection conexion, int codigoInsumo) throws SQLException {
+        String query = "SELECT stock_actual FROM insumo WHERE codigo_insumo = ? FOR UPDATE ";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setInt(1, codigoInsumo);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBigDecimal("stock_actual");
+                }
+                throw new SQLException("No se encontró el insumo con código " + codigoInsumo);
+            }
+        }
     }
 
     private Insumo convertirAInsumo(ResultSet resultSet) throws SQLException {

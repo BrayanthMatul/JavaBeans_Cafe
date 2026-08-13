@@ -2,27 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas;
+package com.mycompany.javabeans_cafe.interfaces_graficas.mesero.cuentas;
+
+import javax.swing.JDesktopPane;
 
 import com.mycompany.javabeans_cafe.enums.EstadoMesa;
+import com.mycompany.javabeans_cafe.modelos.Empleado;
 import com.mycompany.javabeans_cafe.modelos.Mesa;
 
 /**
  *
  * @author matul
  */
-public class PanelMesa extends javax.swing.JPanel {
+public class PanelMesaCuenta extends javax.swing.JPanel {
 
     private Mesa mesa;
+    private JDesktopPane jDesktopPane;
+    private Empleado empleado;
 
     /**
      * Creates new form PanelMesa
      */
-    public PanelMesa(Mesa mesa) {
+    public PanelMesaCuenta(Mesa mesa, JDesktopPane jDesktopPane, Empleado empleado) {
         initComponents();
         this.mesa = mesa;
+        this.jDesktopPane = jDesktopPane;
+        this.empleado = empleado;
         insertarDatos();
         asignarColorLabelEstado();
+        configurarBoton();
     }
 
     private void insertarDatos() {
@@ -40,6 +48,15 @@ public class PanelMesa extends javax.swing.JPanel {
 
     }
 
+    private void configurarBoton() {
+        if (mesa.getEstado() == EstadoMesa.LIBRE) {
+            jButtonAbrirCuenta.setEnabled(true);
+        } else if (mesa.getEstado() == EstadoMesa.OCUPADA) {
+            jButtonAbrirCuenta.setEnabled(false);
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,14 +65,17 @@ public class PanelMesa extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabelNumeroMesa = new javax.swing.JLabel();
         jLabelTituloCapacidad = new javax.swing.JLabel();
         jLabelTituloEstado = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jButtonAbrirCuenta = new javax.swing.JButton();
 
-        setLayout(new java.awt.GridLayout(3, 1));
+        setLayout(new java.awt.GridLayout(4, 1));
 
         jLabelNumeroMesa.setBackground(new java.awt.Color(50, 52, 35));
         jLabelNumeroMesa.setFont(new java.awt.Font("Noto Sans CJK JP Black", 1, 15)); // NOI18N
@@ -80,11 +100,31 @@ public class PanelMesa extends javax.swing.JPanel {
         jLabelTituloEstado.setText("Estado: LIBRE");
         jLabelTituloEstado.setOpaque(true);
         add(jLabelTituloEstado);
+
+        jPanel1.setBackground(new java.awt.Color(50, 52, 35));
+
+        jButtonAbrirCuenta.setBackground(new java.awt.Color(227, 135, 88));
+        jButtonAbrirCuenta.setFont(new java.awt.Font("Noto Sans CJK JP Black", 0, 12)); // NOI18N
+        jButtonAbrirCuenta.setText("Abrir Cuenta");
+        jButtonAbrirCuenta.addActionListener(this::jButtonAbrirCuentaActionPerformed);
+        jPanel1.add(jButtonAbrirCuenta);
+
+        add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonAbrirCuentaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAbrirCuentaActionPerformed
+        this.jDesktopPane.removeAll();
+        InternalCuentaAbierta cuentaAbierta = new InternalCuentaAbierta(mesa.getNumeroMesa(),
+                empleado.getCodigoEmpleado());
+        jDesktopPane.add(cuentaAbierta);
+        cuentaAbierta.setVisible(true);
+    }// GEN-LAST:event_jButtonAbrirCuentaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAbrirCuenta;
     private javax.swing.JLabel jLabelNumeroMesa;
     private javax.swing.JLabel jLabelTituloCapacidad;
     private javax.swing.JLabel jLabelTituloEstado;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

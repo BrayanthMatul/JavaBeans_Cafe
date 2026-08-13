@@ -5,7 +5,9 @@
 package com.mycompany.javabeans_cafe.interfaces_graficas.mesero;
 
 import com.mycompany.javabeans_cafe.interfaces_graficas.LoginFrame;
+import com.mycompany.javabeans_cafe.interfaces_graficas.mesero.cuentas.InternalVisualizadorMesas;
 import com.mycompany.javabeans_cafe.modelos.Empleado;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -77,9 +79,17 @@ public class MeseroPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCerrarSesionActionPerformed
 
     private void jMenuItemAbrirCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirCuentaActionPerformed
-        // TODO add your handling code here:
+        this.cerrarVentanasInternas();
+        InternalVisualizadorMesas visualizadorMesas = new InternalVisualizadorMesas(meseroLogueado, jDesktopPane1);
+        jDesktopPane1.add(visualizadorMesas);
+        visualizadorMesas.setVisible(true);
     }//GEN-LAST:event_jMenuItemAbrirCuentaActionPerformed
 
+    private void cerrarVentanasInternas() {
+        for (JInternalFrame ventana : jDesktopPane1.getAllFrames()) {
+            ventana.dispose();
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;

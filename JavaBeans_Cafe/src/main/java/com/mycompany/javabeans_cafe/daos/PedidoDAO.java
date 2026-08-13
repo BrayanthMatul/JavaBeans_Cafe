@@ -125,11 +125,10 @@ public class PedidoDAO {
         }
     }
 
-    public void marcarTodosContabilizados() throws SQLException {
+    public void marcarTodosContabilizados(Connection conexion) throws SQLException {
         String query = "UPDATE pedido SET contabilizado = TRUE WHERE contabilizado = FALSE AND estado_cuenta = ? ";
 
-        try (Connection conexion = ConexionBD.getConexion();
-                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
             preparedStatement.setString(1, EstadoCuentaPedido.PAGADA.name());
             preparedStatement.executeUpdate();
 
@@ -197,6 +196,40 @@ public class PedidoDAO {
             }
         }
         return BigDecimal.ZERO;
+    }
+
+    public BigDecimal obtenerMontoNoContabilizado(Connection conexion) throws SQLException {
+        String query = """
+                SELECT COALESCE(SUM(monto_pedido), 0) AS total_monto
+                FROM pedido WHERE contabilizado = FALSE AND estado_cuenta = ?
+                """;
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, EstadoCuentaPedido.PAGADA.name());
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBigDecimal("total_monto");
+                }
+            }
+        } catch (SQLException e) {
+            throw new SQLException(
+                    "Error al obtener el monto de los pedidos no contabilizados: "
+                            + e.getMessage());
+        }
+
+        return BigDecimal.ZERO;
+    }
+
+    public void marcarTodosContabilizado(Connection conexion) throws SQLException {
+        String query = "UPDATE pedido SET contabilizado = TRUE WHERE contabilizado = FALSE AND estado_cuenta = ? ";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, EstadoCuentaPedido.PAGADA.name());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al marcar el pedido como contabilizado: " + e.getMessage());
+        }
     }
 
     private Pedido convertirAPedido(ResultSet resultSet) throws SQLException {

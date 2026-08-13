@@ -36,4 +36,61 @@ public class PagoSalario {
         this.estado = estado;
     }
 
+    public int getCodigoNomina() {
+        return codigoNomina;
+    }
+
+    public void setCodigoNomina(int codigoNomina) {
+        this.codigoNomina = codigoNomina;
+    }
+
+    public int getCodigoEmpleado() {
+        return codigoEmpleado;
+    }
+
+    public void setCodigoEmpleado(int codigoEmpleado) {
+        this.codigoEmpleado = codigoEmpleado;
+    }
+
+    public String getDpiEmpleado() {
+        return dpiEmpleado;
+    }
+
+    public void setDpiEmpleado(String dpiEmpleado) {
+        this.dpiEmpleado = dpiEmpleado;
+    }
+
+    public Timestamp getFechaHoraEmision() {
+        return fechaHoraEmision;
+    }
+
+    public void setFechaHoraEmision(Timestamp fechaHoraEmision) {
+        this.fechaHoraEmision = fechaHoraEmision;
+    }
+
+    public TipoPago getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(TipoPago tipoPago) {
+        this.tipoPago = tipoPago;
+    }
+
+    public BigDecimal getMontoPago() {
+        return montoPago;
+    }
+
+    public void setMontoPago(BigDecimal montoPago) {
+        this.montoPago = montoPago;
+    }
+
+    public EstadoPagoEmpleado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoPagoEmpleado estado) {
+        this.estado = estado;
+    }
+    
+
 }

@@ -20,9 +20,10 @@ public class PagoPendienteAutomaticoServicio {
 
     public void ejecutarPagoAutomatico() throws SQLException {
 
+        System.out.println("Verificando si hay pagos por registrar...");
         if (debeGenerarPagoQuincena()) {
             generarPagosPendientes(TipoPago.QUINCENA, new BigDecimal("0.30"));
-            System.out.println("Pagos pendientes registrados");
+
         }
 
         if (debeGenerarPagoFinDeMes()) {
@@ -30,7 +31,6 @@ public class PagoPendienteAutomaticoServicio {
             System.out.println("Pagos pendientes registrados");
         }
 
-        System.out.println("No se registraron nuevos pagos pendientes");
     }
 
     private boolean debeGenerarPagoQuincena() {
@@ -56,6 +56,7 @@ public class PagoPendienteAutomaticoServicio {
         PedidoDAO pedidoDAO = new PedidoDAO();
         LocalDate fechaActual = LocalDate.now();
         List<Empleado> empleados = empleadoDAO.obtenerTodos(true);
+        boolean seRealizoAlMenosUnPago = false;
 
         for (Empleado empleado : empleados) {
             boolean pagoYaExiste = pagoSalarioDAO.existePagoDelPeriodo(empleado.getCodigoEmpleado(), tipoPago,
@@ -77,6 +78,10 @@ public class PagoPendienteAutomaticoServicio {
                     EstadoPagoEmpleado.PENDIENTE);
 
             pagoSalarioDAO.insertar(nuevoPago);
+            seRealizoAlMenosUnPago = true;
+        }
+        if (seRealizoAlMenosUnPago) {
+            System.out.println("Pagos pendientes registrados");
         }
     }
 }

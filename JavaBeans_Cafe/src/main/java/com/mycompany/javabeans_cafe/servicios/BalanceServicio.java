@@ -8,6 +8,7 @@ import java.time.YearMonth;
 import java.util.List;
 
 import com.mycompany.javabeans_cafe.daos.BalanceFinancieroDAO;
+import com.mycompany.javabeans_cafe.daos.CompraDAO;
 import com.mycompany.javabeans_cafe.daos.PagoSalarioDAO;
 import com.mycompany.javabeans_cafe.daos.PedidoDAO;
 import com.mycompany.javabeans_cafe.db.ConexionBD;
@@ -34,6 +35,7 @@ public class BalanceServicio {
 
                 PagoSalarioDAO pagoSalarioDAO = new PagoSalarioDAO();
                 PedidoDAO pedidoDAO = new PedidoDAO();
+                CompraDAO compraDAO = new CompraDAO();
                 BalanceFinancieroDAO balanceDAO = new BalanceFinancieroDAO();
 
                 try (Connection conexion = ConexionBD.getConexion()) {
@@ -55,10 +57,13 @@ public class BalanceServicio {
                                         pago.setEstado(EstadoPagoEmpleado.PAGADO);
                                 }
 
-                                // Ingresos obtener el monto de los pedidos no contabilizados
+                                BigDecimal montoCompras = compraDAO.obtenerMontoNoContabilizado(conexion);
+
+                                montoEgresos = montoEgresos.add(montoCompras);
                                 BigDecimal montoIngresos = pedidoDAO.obtenerMontoNoContabilizado(conexion);
 
                                 pedidoDAO.marcarTodosContabilizados(conexion);
+                                compraDAO.marcarTodosContabilizados(conexion);
                                 BigDecimal balance = montoIngresos.subtract(montoEgresos);
                                 BalanceFinanciero nuevoBalance = new BalanceFinanciero(montoIngresos, montoEgresos,
                                                 balance);

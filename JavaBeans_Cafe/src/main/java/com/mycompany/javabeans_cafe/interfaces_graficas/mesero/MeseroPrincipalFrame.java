@@ -6,6 +6,7 @@ package com.mycompany.javabeans_cafe.interfaces_graficas.mesero;
 
 import com.mycompany.javabeans_cafe.interfaces_graficas.LoginFrame;
 import com.mycompany.javabeans_cafe.interfaces_graficas.mesero.cuentas.InternalVisualizadorMesas;
+import com.mycompany.javabeans_cafe.interfaces_graficas.mesero.cuentas.InternalVisulizadorPedidos;
 import com.mycompany.javabeans_cafe.modelos.Empleado;
 import javax.swing.JInternalFrame;
 
@@ -42,6 +43,7 @@ public class MeseroPrincipalFrame extends javax.swing.JFrame {
         jMenuItemCerrarSesion = new javax.swing.JMenuItem();
         jMenuPersonal = new javax.swing.JMenu();
         jMenuItemAbrirCuenta = new javax.swing.JMenuItem();
+        jMenuItemCuentasAbiertas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,11 +61,15 @@ public class MeseroPrincipalFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenuPersonal.setText("Cuentas");
+        jMenuPersonal.setText("Pedidos");
 
-        jMenuItemAbrirCuenta.setText("Abrir cuenta");
+        jMenuItemAbrirCuenta.setText("Abrir nueva cuenta");
         jMenuItemAbrirCuenta.addActionListener(this::jMenuItemAbrirCuentaActionPerformed);
         jMenuPersonal.add(jMenuItemAbrirCuenta);
+
+        jMenuItemCuentasAbiertas.setText("Ver cuentas abiertas");
+        jMenuItemCuentasAbiertas.addActionListener(this::jMenuItemCuentasAbiertasActionPerformed);
+        jMenuPersonal.add(jMenuItemCuentasAbiertas);
 
         jMenuBar1.add(jMenuPersonal);
 
@@ -85,6 +91,13 @@ public class MeseroPrincipalFrame extends javax.swing.JFrame {
         visualizadorMesas.setVisible(true);
     }//GEN-LAST:event_jMenuItemAbrirCuentaActionPerformed
 
+    private void jMenuItemCuentasAbiertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCuentasAbiertasActionPerformed
+        this.cerrarVentanasInternas();
+        InternalVisulizadorPedidos internalVisulizadorPedidos = new InternalVisulizadorPedidos(meseroLogueado.getCodigoEmpleado(), jDesktopPane1);
+        jDesktopPane1.add(internalVisulizadorPedidos);
+        internalVisulizadorPedidos.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCuentasAbiertasActionPerformed
+
     private void cerrarVentanasInternas() {
         for (JInternalFrame ventana : jDesktopPane1.getAllFrames()) {
             ventana.dispose();
@@ -98,6 +111,7 @@ public class MeseroPrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAbrirCuenta;
     private javax.swing.JMenuItem jMenuItemCerrarSesion;
+    private javax.swing.JMenuItem jMenuItemCuentasAbiertas;
     private javax.swing.JMenu jMenuPersonal;
     // End of variables declaration//GEN-END:variables
 }

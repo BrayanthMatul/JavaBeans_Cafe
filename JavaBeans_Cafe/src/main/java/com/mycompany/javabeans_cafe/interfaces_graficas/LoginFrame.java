@@ -203,7 +203,7 @@ public class LoginFrame extends javax.swing.JFrame {
                     cocinaFrame.setVisible(true);
                     this.dispose();
                 } else if (empleado.getRol() == EmpleadoRol.MESERO) {
-                    MeseroPrincipalFrame meseroFrame = new MeseroPrincipalFrame();
+                    MeseroPrincipalFrame meseroFrame = new MeseroPrincipalFrame(empleado);
                     meseroFrame.setVisible(true);
                     this.dispose();
                 }

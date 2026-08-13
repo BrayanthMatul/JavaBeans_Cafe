@@ -15,14 +15,15 @@ import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestion_menu.InternalVisulizarMenu;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestionn_insumos.InternalEditorInsumo;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestionn_insumos.InternalListaInsumos;
-import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestionn_insumos.InternalListaInsumosBajoStock;
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internal.reportes.InternalListaInsumosBajoStock;
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internal.reportes.InternalProductosMasVendidos;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestionn_insumos.InternalRegistrarCompraInsumo;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.gestionn_insumos.InternalRegistrarInsumo;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalEditarMesa;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalRegistrarMesa;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalVisualizadorMesas;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.nomina.InternalBalance;
-import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.nomina.InternalVisualizadorBalances;
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internal.reportes.InternalVisualizadorBalances;
 import javax.swing.JInternalFrame;
 
 /**
@@ -69,7 +70,6 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemEditarInsumo = new javax.swing.JMenuItem();
         jMenuItemRegistrarCompra = new javax.swing.JMenuItem();
         jMenuItemListaInsumos = new javax.swing.JMenuItem();
-        jMenuItemListaStockBajo = new javax.swing.JMenuItem();
         jMenuMesas = new javax.swing.JMenu();
         jMenuItemRegistrarMesa = new javax.swing.JMenuItem();
         jMenuItemEditarMesa = new javax.swing.JMenuItem();
@@ -81,7 +81,10 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemVerMenu = new javax.swing.JMenuItem();
         JMenuNomina = new javax.swing.JMenu();
         jMenuItemRealizarNomina = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jMenuItemVerBalances = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemListaStockBajo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -138,10 +141,6 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemListaInsumos.addActionListener(this::jMenuItemListaInsumosActionPerformed);
         jMenuInventario.add(jMenuItemListaInsumos);
 
-        jMenuItemListaStockBajo.setText("Lista de Insumos con Stock Bajo");
-        jMenuItemListaStockBajo.addActionListener(this::jMenuItemListaStockBajoActionPerformed);
-        jMenuInventario.add(jMenuItemListaStockBajo);
-
         jMenuBar1.add(jMenuInventario);
 
         jMenuMesas.setText("Mesas");
@@ -186,11 +185,23 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemRealizarNomina.addActionListener(this::jMenuItemRealizarNominaActionPerformed);
         JMenuNomina.add(jMenuItemRealizarNomina);
 
-        jMenuItemVerBalances.setText("Ver balances");
-        jMenuItemVerBalances.addActionListener(this::jMenuItemVerBalancesActionPerformed);
-        JMenuNomina.add(jMenuItemVerBalances);
-
         jMenuBar1.add(JMenuNomina);
+
+        jMenu2.setText("Reportes");
+
+        jMenuItemVerBalances.setText("Reporte de balances");
+        jMenuItemVerBalances.addActionListener(this::jMenuItemVerBalancesActionPerformed);
+        jMenu2.add(jMenuItemVerBalances);
+
+        jMenuItem3.setText("Productos Mas Vendidos");
+        jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
+        jMenu2.add(jMenuItem3);
+
+        jMenuItemListaStockBajo.setText("Lista de Insumos con Stock Bajo");
+        jMenuItemListaStockBajo.addActionListener(this::jMenuItemListaStockBajoActionPerformed);
+        jMenu2.add(jMenuItemListaStockBajo);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -322,6 +333,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
         balances.setVisible(true);
     }//GEN-LAST:event_jMenuItemVerBalancesActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+         this.cerrarVentanasInternas();
+        InternalProductosMasVendidos productosMasVendidos = new InternalProductosMasVendidos();
+        jDesktopPane1.add(productosMasVendidos);
+        productosMasVendidos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
         InternalRegistroEmpleado registrarEmpleado = new InternalRegistroEmpleado();
@@ -339,11 +357,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu JMenuNomina;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuIemEditarEmpleado;
     private javax.swing.JMenu jMenuInventario;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemActivarDesactivar;
     private javax.swing.JMenuItem jMenuItemAgregarInsumo;
     private javax.swing.JMenuItem jMenuItemCerrarSesion;

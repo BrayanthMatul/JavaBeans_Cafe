@@ -12,66 +12,56 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
-import com.mycompany.javabeans_cafe.daos.InsumoDAO;
+import com.mycompany.javabeans_cafe.daos.ProductoMasVendidoDAO;
 import com.mycompany.javabeans_cafe.interfaces_graficas.modales.MensajeDialogFrame;
-import com.mycompany.javabeans_cafe.modelos.Insumo;
-import com.mycompany.javabeans_cafe.util.ExportadorInsumoBajoStockHTML;
+import com.mycompany.javabeans_cafe.modelos.ProductoMasVendido;
+import com.mycompany.javabeans_cafe.util.ExportadorBalanceHTML;
+import com.mycompany.javabeans_cafe.util.ExportadorProctoTopHTML;
 
 /**
  *
  * @author matul
  */
-public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
+public class InternalProductosMasVendidos extends javax.swing.JInternalFrame {
 
-    private InsumoDAO insumoDAO;
-    private List<Insumo> insumosBajosDeStock;
+    private List<ProductoMasVendido> productosMasVendidos;
 
     /**
-     * Creates new form InternalListaInsumosBajoStock
+     * Creates new form InternalProductosMasVendidos
      */
-    public InternalListaInsumosBajoStock() {
+    public InternalProductosMasVendidos() {
         initComponents();
-        this.insumoDAO = new InsumoDAO();
-
-        boolean cargaExitosa = cargarInsumos();
-        colocarInsumosEnTabla();
-
-        if (cargaExitosa && insumosBajosDeStock.isEmpty()) {
-            String mensajeError = "No hay insumos con bajo stock.";
-            mostrarMensajeError(mensajeError);
-        }
+        cargarProductosMasVendidos();
+        colocarProductosEnTabla();
     }
 
-    private boolean cargarInsumos() {
+    private void cargarProductosMasVendidos() {
+        ProductoMasVendidoDAO productoMasVendidoDAO = new ProductoMasVendidoDAO();
         try {
-            this.insumosBajosDeStock = insumoDAO.obtenerConStockBajo();
-            return true;
+            this.productosMasVendidos = productoMasVendidoDAO.obtenerProductosMasVendidos();
         } catch (SQLException e) {
-            String mensajeError = "Error al cargar los insumos: " + e.getMessage();
+            String mensajeError = "Error al cargar los productos más vendidos: " + e.getMessage();
             mostrarMensajeError(mensajeError);
-            return false;
         }
     }
 
-    private void colocarInsumosEnTabla() {
+    private void colocarProductosEnTabla() {
 
         String[] columnas = {
-                "Código Insumo",
-                "Nombre Insumo",
-                "Stock Actual",
-                "Stock Mínimo",
-                "Costo Insumo"
+                "Código Producto",
+                "Nombre Producto",
+                "Cantidad Vendida"
         };
 
         DefaultTableModel modeloInsumos = crearModelo(columnas);
 
-        if (insumosBajosDeStock != null) {
-            for (Insumo insumo : insumosBajosDeStock) {
-                modeloInsumos.addRow(convertirInsumoAFila(insumo));
+        if (productosMasVendidos != null) {
+            for (ProductoMasVendido producto : productosMasVendidos) {
+                modeloInsumos.addRow(convertirProductoAFila(producto));
             }
         }
 
-        jTableInsumos.setModel(modeloInsumos);
+        jTableProductos.setModel(modeloInsumos);
     }
 
     private DefaultTableModel crearModelo(String[] columnas) {
@@ -83,19 +73,17 @@ public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
         };
     }
 
-    private Object[] convertirInsumoAFila(Insumo insumo) {
+    private Object[] convertirProductoAFila(ProductoMasVendido producto) {
         return new Object[] {
-                insumo.getCodigoInsumo(),
-                insumo.getNombreInsumo(),
-                insumo.getStockActual(),
-                insumo.getStockMinimo(),
-                insumo.getCostoInsumo()
+                producto.getCodigoProducto(),
+                producto.getNombreProducto(),
+                producto.getCantidadVendida()
         };
     }
 
     private void mostrarMensajeError(String mensaje) {
-        MensajeDialogFrame mensajeDialog = new MensajeDialogFrame(null, true, mensaje, true);
-        mensajeDialog.setVisible(true);
+        MensajeDialogFrame mensajeDialogFrame = new MensajeDialogFrame(null, true, mensaje, true);
+        mensajeDialogFrame.setVisible(true);
     }
 
     /**
@@ -114,9 +102,9 @@ public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
         jLabelTituloLista = new javax.swing.JLabel();
         jPanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableInsumos = new javax.swing.JTable();
+        jTableProductos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jButtonActualizar4 = new javax.swing.JButton();
+        jButtonExportarHTML = new javax.swing.JButton();
 
         jPanel.setBackground(new java.awt.Color(50, 52, 35));
         jPanel.setLayout(new java.awt.BorderLayout());
@@ -127,7 +115,7 @@ public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
         jLabelTituloLista.setFont(new java.awt.Font("Noto Sans CJK JP Black", 1, 15)); // NOI18N
         jLabelTituloLista.setForeground(new java.awt.Color(227, 135, 88));
         jLabelTituloLista.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTituloLista.setText("Lista de insumos con bajo stock");
+        jLabelTituloLista.setText("Productos Mas Vendidos");
         jLabelTituloLista.setOpaque(true);
         jPanelTitulo.add(jLabelTituloLista);
 
@@ -137,7 +125,7 @@ public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
         jPanelTabla.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 20, 20, 20));
         jPanelTabla.setLayout(new java.awt.BorderLayout());
 
-        jTableInsumos.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProductos.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
                         { null, null, null, null },
                         { null, null, null, null },
@@ -147,7 +135,7 @@ public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
                 new String[] {
                         "Title 1", "Title 2", "Title 3", "Title 4"
                 }));
-        jScrollPane1.setViewportView(jTableInsumos);
+        jScrollPane1.setViewportView(jTableProductos);
 
         jPanelTabla.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -155,11 +143,11 @@ public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(50, 52, 35));
 
-        jButtonActualizar4.setBackground(new java.awt.Color(227, 135, 88));
-        jButtonActualizar4.setFont(new java.awt.Font("Noto Sans CJK JP Black", 0, 12)); // NOI18N
-        jButtonActualizar4.setText("Exporta HTML");
-        jButtonActualizar4.addActionListener(this::jButtonActualizar4ActionPerformed);
-        jPanel2.add(jButtonActualizar4);
+        jButtonExportarHTML.setBackground(new java.awt.Color(227, 135, 88));
+        jButtonExportarHTML.setFont(new java.awt.Font("Noto Sans CJK JP Black", 0, 12)); // NOI18N
+        jButtonExportarHTML.setText("Exporta HTML");
+        jButtonExportarHTML.addActionListener(this::jButtonExportarHTMLActionPerformed);
+        jPanel2.add(jButtonExportarHTML);
 
         jPanel.add(jPanel2, java.awt.BorderLayout.SOUTH);
 
@@ -168,15 +156,15 @@ public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonActualizar4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonActualizar4ActionPerformed
+    private void jButtonExportarHTMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonExportarHTMLActionPerformed
         seleccionarRutaArchivoYGuardar();
-    }// GEN-LAST:event_jButtonActualizar4ActionPerformed
+    }// GEN-LAST:event_jButtonExportarHTMLActionPerformed
 
     private void seleccionarRutaArchivoYGuardar() {
         JFileChooser fileChooser = new JFileChooser();
 
         fileChooser.setDialogTitle("Guardar archivo HTML");
-        fileChooser.setSelectedFile(new java.io.File("insumos_bajo_stock.html"));
+        fileChooser.setSelectedFile(new java.io.File("productos_mas_vendidos.html"));
 
         int resultado = fileChooser.showSaveDialog(this);
 
@@ -187,29 +175,29 @@ public class InternalListaInsumosBajoStock extends javax.swing.JInternalFrame {
             }
 
             try {
-                ExportadorInsumoBajoStockHTML exportador = new ExportadorInsumoBajoStockHTML();
+                ExportadorProctoTopHTML exportador = new ExportadorProctoTopHTML();
                 exportador.exportar(archivo);
-                String mensajeExito = "Insumos con bajo stock exportados exitosamente";
+                String mensajeExito = "Productos más vendidos exportados exitosamente";
                 MensajeDialogFrame mensajeDialog = new MensajeDialogFrame(null, true, mensajeExito, false);
                 mensajeDialog.setVisible(true);
             } catch (IOException e) {
-                String mensajeError = "Error al exportar los insumos con bajo stock: " + e.getMessage();
+                String mensajeError = "Error al exportar los productos más vendidos: " + e.getMessage();
                 mostrarMensajeError(mensajeError);
             } catch (SQLException e) {
-                String mensajeError = "Error al exportar los insumos con bajo stock: " + e.getMessage();
+                String mensajeError = "Error al exportar los productos más vendidos: " + e.getMessage();
                 mostrarMensajeError(mensajeError);
             }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonActualizar4;
+    private javax.swing.JButton jButtonExportarHTML;
     private javax.swing.JLabel jLabelTituloLista;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelTabla;
     private javax.swing.JPanel jPanelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableInsumos;
+    private javax.swing.JTable jTableProductos;
     // End of variables declaration//GEN-END:variables
 }

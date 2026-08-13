@@ -2,17 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package com.mycompany.javabeans_cafe.interfaces_graficas.administrador.nomina;
+package com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internal.reportes;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 import com.mycompany.javabeans_cafe.daos.BalanceFinancieroDAO;
 import com.mycompany.javabeans_cafe.interfaces_graficas.modales.MensajeDialogFrame;
 import com.mycompany.javabeans_cafe.modelos.BalanceFinanciero;
+import com.mycompany.javabeans_cafe.util.ExportadorBalanceHTML;
+import com.mycompany.javabeans_cafe.util.ExportadorMenuHTML;
 
 /**
  *
@@ -128,6 +133,7 @@ public class InternalVisualizadorBalances extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -146,6 +152,8 @@ public class InternalVisualizadorBalances extends javax.swing.JInternalFrame {
         jLabelTituloUltimo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableInactivos = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jButtonActualizar4 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(50, 52, 35));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -234,16 +242,66 @@ public class InternalVisualizadorBalances extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanelTablas, java.awt.BorderLayout.CENTER);
 
+        jPanel2.setBackground(new java.awt.Color(50, 52, 35));
+
+        jButtonActualizar4.setBackground(new java.awt.Color(227, 135, 88));
+        jButtonActualizar4.setFont(new java.awt.Font("Noto Sans CJK JP Black", 0, 12)); // NOI18N
+        jButtonActualizar4.setText("Exporta HTML");
+        jButtonActualizar4.addActionListener(this::jButtonActualizar4ActionPerformed);
+        jPanel2.add(jButtonActualizar4);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.SOUTH);
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonActualizar4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonActualizar4ActionPerformed
+        seleccionarRutaArchivoYGuardar();
+    }// GEN-LAST:event_jButtonActualizar4ActionPerformed
+
+    private void seleccionarRutaArchivoYGuardar() {
+        JFileChooser fileChooser = new JFileChooser();
+
+        fileChooser.setDialogTitle("Guardar archivo HTML");
+        fileChooser.setSelectedFile(new java.io.File("balances.html"));
+
+        int resultado = fileChooser.showSaveDialog(this);
+
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File archivo = fileChooser.getSelectedFile();
+            if (!archivo.getName().toLowerCase().endsWith(".html")) {
+                archivo = new File(archivo.getAbsolutePath() + ".html");
+            }
+
+            try {
+                ExportadorBalanceHTML exportador = new ExportadorBalanceHTML();
+                exportador.exportar(archivo);
+                String mensajeExito = "Balances exportados exitosamente";
+                MensajeDialogFrame mensajeDialog = new MensajeDialogFrame(null, true, mensajeExito, false);
+                mensajeDialog.setVisible(true);
+            } catch (IOException e) {
+                String mensajeError = "Error al exportar el balance: " + e.getMessage();
+                mostrarError(mensajeError);
+            } catch (SQLException e) {
+                String mensajeError = "Error al exportar el balance: " + e.getMessage();
+                mostrarError(mensajeError);
+            }
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonActualizar;
+    private javax.swing.JButton jButtonActualizar1;
+    private javax.swing.JButton jButtonActualizar2;
+    private javax.swing.JButton jButtonActualizar3;
+    private javax.swing.JButton jButtonActualizar4;
     private javax.swing.JLabel jLabelTituloListas;
     private javax.swing.JLabel jLabelTituloTodos;
     private javax.swing.JLabel jLabelTituloUltimo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelAjuste;
     private javax.swing.JPanel jPanelTablaDos;
     private javax.swing.JPanel jPanelTablaUno;

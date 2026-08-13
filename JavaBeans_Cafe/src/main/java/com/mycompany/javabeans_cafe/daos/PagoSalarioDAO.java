@@ -52,18 +52,30 @@ public class PagoSalarioDAO {
         return pagos;
     }
 
-    public List<PagoSalario> obtenerPendientes() throws SQLException {
-        String query = "SELECT * FROM pago_salario WHERE estado = ?";
+    public void actualizarEstado(Connection conexion, int codigoNomina, EstadoPagoEmpleado nuevoEstado)
+            throws SQLException {
+        String query = "UPDATE pago_salario SET estado = ? WHERE codigo_nomina = ?";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, nuevoEstado.name());
+            preparedStatement.setInt(2, codigoNomina);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar el estado del pago de salario: " + e.getMessage());
+        }
+    }
+
+    public List<PagoSalario> obtenerPendientesPorTipo(Connection conexion, TipoPago tipoPago) throws SQLException {
+        String query = "SELECT * FROM pago_salario WHERE estado = ? AND tipo_pago = ?";
         List<PagoSalario> pagosPendientes = new ArrayList<>();
 
-        try (Connection conexion = ConexionBD.getConexion();
-                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
             preparedStatement.setString(1, EstadoPagoEmpleado.PENDIENTE.name());
+            preparedStatement.setString(2, tipoPago.name());
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    pagosPendientes.add(
-                            convertirAPagoSalario(resultSet));
+                    pagosPendientes.add(convertirAPagoSalario(resultSet));
                 }
             }
         } catch (SQLException e) {
@@ -71,23 +83,6 @@ public class PagoSalarioDAO {
         }
 
         return pagosPendientes;
-    }
-
-    public boolean hayPendientes() throws SQLException {
-        String query = "SELECT 1 FROM pago_salario WHERE estado = ? LIMIT 1 ";
-
-        try (Connection conexion = ConexionBD.getConexion();
-                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
-
-            preparedStatement.setString(1, EstadoPagoEmpleado.PENDIENTE.name());
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                return resultSet.next();
-            }
-
-        } catch (SQLException e) {
-            throw new SQLException("Error al verificar si existen pagos pendientes: " + e.getMessage());
-        }
     }
 
     public boolean existePagoDelPeriodo(int codigoEmpleado, TipoPago tipoPago, LocalDate fecha) throws SQLException {

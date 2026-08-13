@@ -25,6 +25,47 @@ public class BalanceFinanciero {
         this.monto_ingresos = monto_ingresos;
         this.monto_egresos = monto_egresos;
         this.balance = balance;
+        this.fecha_hora = new Timestamp(System.currentTimeMillis());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Timestamp getFechaHora() {
+        return fecha_hora;
+    }
+
+    public BigDecimal getMontoIngresos() {
+        return monto_ingresos;
+    }
+
+    public BigDecimal getMontoEgresos() {
+        return monto_egresos;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFechaHora(Timestamp fecha_hora) {
+        this.fecha_hora = fecha_hora;
+    }
+
+    public void setMontoIngresos(BigDecimal monto_ingresos) {
+        this.monto_ingresos = monto_ingresos;
+    }
+
+    public void setMontoEgresos(BigDecimal monto_egresos) {
+        this.monto_egresos = monto_egresos;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
 }

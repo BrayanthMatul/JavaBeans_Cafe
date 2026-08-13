@@ -41,4 +41,77 @@ public class Pedido {
         this.estadoCuenta = estadoCuenta;
         this.contabilizado = contabilizado;
     }
+
+    public int getCodigoPedido() {
+        return codigoPedido;
+    }
+
+    public int getCodigoEmpleado() {
+        return codigoEmpleado;
+    }
+
+    public int getNumeroMesa() {
+        return numeroMesa;
+    }
+
+    public Timestamp getFechaHoraOcupacion() {
+        return fechaHoraOcupacion;
+    }
+
+    public Timestamp getFechaHoraLiberacion() {
+        return fechaHoraLiberacion;
+    }
+
+    public BigDecimal getPropina() {
+        return propina;
+    }
+
+    public BigDecimal getMontoPedido() {
+        return montoPedido;
+    }
+
+    public EstadoCuentaPedido getEstadoCuenta() {
+        return estadoCuenta;
+    }
+
+    public boolean isContabilizado() {
+        return contabilizado;
+    }
+
+    public void setCodigoPedido(int codigoPedido) {
+        this.codigoPedido = codigoPedido;
+    }
+
+    public void setCodigoEmpleado(int codigoEmpleado) {
+        this.codigoEmpleado = codigoEmpleado;
+    }
+
+    public void setNumeroMesa(int numeroMesa) {
+        this.numeroMesa = numeroMesa;
+    }
+
+    public void setFechaHoraOcupacion(Timestamp fechaHoraOcupacion) {
+        this.fechaHoraOcupacion = fechaHoraOcupacion;
+    }
+
+    public void setFechaHoraLiberacion(Timestamp fechaHoraLiberacion) {
+        this.fechaHoraLiberacion = fechaHoraLiberacion;
+    }
+
+    public void setPropina(BigDecimal propina) {
+        this.propina = propina;
+    }
+
+    public void setMontoPedido(BigDecimal montoPedido) {
+        this.montoPedido = montoPedido;
+    }
+
+    public void setEstadoCuenta(EstadoCuentaPedido estadoCuenta) {
+        this.estadoCuenta = estadoCuenta;
+    }
+
+    public void setContabilizado(boolean contabilizado) {
+        this.contabilizado = contabilizado;
+    }
+
 }

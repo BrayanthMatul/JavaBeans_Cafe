@@ -39,6 +39,21 @@ public class ProductoMenuDAO {
         return null;
     }
 
+    public String obtenerNombreProductoPorCodigo(int codigoProducto) throws SQLException {
+        String query = "SELECT nombre_producto FROM producto_menu WHERE codigo_producto = ?";
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setInt(1, codigoProducto);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("nombre_producto");
+                }
+            }
+        }
+        return null;
+    }
+
     public List<ProductoMenu> obtenerTodos() throws SQLException {
         List<ProductoMenu> productos = new ArrayList<>();
         String query = "SELECT * FROM producto_menu";

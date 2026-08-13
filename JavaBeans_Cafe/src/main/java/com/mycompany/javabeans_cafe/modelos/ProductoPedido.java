@@ -24,4 +24,44 @@ public class ProductoPedido {
         this.subtotal = subtotal;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCodigoProducto() {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(int codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public int getCodigoPedido() {
+        return codigoPedido;
+    }
+
+    public void setCodigoPedido(int codigoPedido) {
+        this.codigoPedido = codigoPedido;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
+
 }

@@ -58,7 +58,7 @@ public class InternalResumenPagos extends javax.swing.JInternalFrame {
     private DefaultTableModel crearModelo(String[] columnas) {
         return new DefaultTableModel(columnas, 0) {
             @Override
-            public boolean isCellEditable(int fila, int columna) {
+            public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };

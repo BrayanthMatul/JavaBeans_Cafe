@@ -127,7 +127,8 @@ public class InternalBalance extends javax.swing.JInternalFrame {
             this.pagosRealizados = balanceServicio.realizarBalance(TipoPago.FIN_DE_MES, false);
             abrirInternalResumen();
         } catch (SQLException ex) {
-            String mensajeError = "Ocurrió un error al realizar el pago de fin de mes. Por favor, inténtelo de nuevo más tarde.";
+            String mensajeError = "Ocurrió un error al realizar el pago de fin de mes. Por favor, inténtelo de nuevo más tarde."
+                    + ex.getMessage();
             mostrarMensajeError(mensajeError);
         } catch (NoEsFechaDePagoException ex) {
             String mensajeError = "No es fecha de pago de fin de mes. Por favor, inténtelo en la fecha correspondiente.";
@@ -140,7 +141,7 @@ public class InternalBalance extends javax.swing.JInternalFrame {
             this.pagosRealizados = balanceServicio.realizarBalance(TipoPago.FIN_DE_MES, true);
             abrirInternalResumen();
         } catch (SQLException ex) {
-            String mensajeError = "Ocurrió un error al realizar la prueba de pago de fin de mes. Por favor, inténtelo de nuevo más tarde.";
+            String mensajeError = ex.getMessage();
             mostrarMensajeError(mensajeError);
         } catch (NoEsFechaDePagoException ex) {
             String mensajeError = "No es fecha de pago de fin de mes. Por favor, inténtelo en la fecha correspondiente.";
@@ -153,7 +154,7 @@ public class InternalBalance extends javax.swing.JInternalFrame {
             this.pagosRealizados = balanceServicio.realizarBalance(TipoPago.QUINCENA, true);
             abrirInternalResumen();
         } catch (SQLException ex) {
-            String mensajeError = "Ocurrió un error al realizar la prueba de pago de quincena. Por favor, inténtelo de nuevo más tarde.";
+            String mensajeError = ex.getMessage();
             mostrarMensajeError(mensajeError);
         } catch (NoEsFechaDePagoException ex) {
             String mensajeError = "No es fecha de pago de quincena. Por favor, inténtelo en la fecha correspondiente.";

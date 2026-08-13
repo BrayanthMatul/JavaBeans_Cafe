@@ -29,7 +29,7 @@ public class PagoPendienteAutomaticoServicio {
             generarPagosPendientes(TipoPago.FIN_DE_MES, new BigDecimal("0.70"));
             System.out.println("Pagos pendientes registrados");
         }
-        
+
         System.out.println("No se registraron nuevos pagos pendientes");
     }
 

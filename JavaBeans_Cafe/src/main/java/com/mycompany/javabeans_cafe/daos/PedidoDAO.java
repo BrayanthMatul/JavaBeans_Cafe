@@ -179,6 +179,26 @@ public class PedidoDAO {
         }
     }
 
+    public BigDecimal obtenerPropinasNoContabilizadasPorEmpleado(int codigoEmpleado) throws SQLException {
+        String query = """
+                SELECT COALESCE(SUM(propina), 0) AS total_propinas FROM pedido
+                        WHERE codigo_empleado = ? AND estado_cuenta = ? AND contabilizado = FALSE
+                        """;
+
+        try (Connection conexion = ConexionBD.getConexion();
+                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setInt(1, codigoEmpleado);
+            preparedStatement.setString(2, EstadoCuentaPedido.PAGADA.name());
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBigDecimal("total_propinas");
+                }
+            }
+        }
+        return BigDecimal.ZERO;
+    }
+
     private Pedido convertirAPedido(ResultSet resultSet) throws SQLException {
         return new Pedido(
                 resultSet.getInt("codigo_pedido"),

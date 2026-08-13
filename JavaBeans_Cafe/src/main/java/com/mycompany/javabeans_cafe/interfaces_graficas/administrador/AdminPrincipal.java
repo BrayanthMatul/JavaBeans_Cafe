@@ -22,6 +22,7 @@ import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalRegistrarMesa;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalVisualizadorMesas;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.nomina.InternalBalance;
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.nomina.InternalVisualizadorBalances;
 import javax.swing.JInternalFrame;
 
 /**
@@ -80,6 +81,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemVerMenu = new javax.swing.JMenuItem();
         JMenuNomina = new javax.swing.JMenu();
         jMenuItemRealizarNomina = new javax.swing.JMenuItem();
+        jMenuItemVerBalances = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -183,6 +185,10 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemRealizarNomina.setText("Realizar pago");
         jMenuItemRealizarNomina.addActionListener(this::jMenuItemRealizarNominaActionPerformed);
         JMenuNomina.add(jMenuItemRealizarNomina);
+
+        jMenuItemVerBalances.setText("Ver balances");
+        jMenuItemVerBalances.addActionListener(this::jMenuItemVerBalancesActionPerformed);
+        JMenuNomina.add(jMenuItemVerBalances);
 
         jMenuBar1.add(JMenuNomina);
 
@@ -309,6 +315,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
         balance.setVisible(true);
     }//GEN-LAST:event_jMenuItemRealizarNominaActionPerformed
 
+    private void jMenuItemVerBalancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerBalancesActionPerformed
+        this.cerrarVentanasInternas();
+        InternalVisualizadorBalances balances = new InternalVisualizadorBalances();
+        jDesktopPane1.add(balances);
+        balances.setVisible(true);
+    }//GEN-LAST:event_jMenuItemVerBalancesActionPerformed
+
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
         InternalRegistroEmpleado registrarEmpleado = new InternalRegistroEmpleado();
@@ -346,6 +359,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemRegistrarInsumo;
     private javax.swing.JMenuItem jMenuItemRegistrarMesa;
     private javax.swing.JMenuItem jMenuItemRegistrarProducto;
+    private javax.swing.JMenuItem jMenuItemVerBalances;
     private javax.swing.JMenuItem jMenuItemVerMenu;
     private javax.swing.JMenu jMenuMesas;
     private javax.swing.JMenu jMenuPersonal;

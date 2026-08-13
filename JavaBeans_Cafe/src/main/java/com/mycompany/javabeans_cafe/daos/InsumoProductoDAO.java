@@ -25,18 +25,16 @@ public class InsumoProductoDAO {
         }
     }
 
-    public List<InsumoProducto> obtenerInsumosPorProducto(int codigoProducto) throws SQLException {
+    public List<InsumoProducto> obtenerInsumosPorProducto(Connection conexion, int codigoProducto) throws SQLException {
         List<InsumoProducto> insumosProducto = new ArrayList<>();
         String query = "SELECT * FROM insumo_producto WHERE codigo_producto = ? ";
 
-        try (Connection conexion = ConexionBD.getConexion();
-                PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
             preparedStatement.setInt(1, codigoProducto);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    insumosProducto.add(
-                            convertirAInsumoProducto(resultSet));
+                    insumosProducto.add(convertirAInsumoProducto(resultSet));
                 }
             }
         }

@@ -1,6 +1,8 @@
 package com.mycompany.javabeans_cafe.daos;
 
 import com.mycompany.javabeans_cafe.db.ConexionBD;
+
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,8 +59,7 @@ public class CompraDAO {
             preparedStatement.setTimestamp(1, fechaInicio);
             preparedStatement.setTimestamp(2, fechaFinal);
 
-            try (ResultSet resultSet =
-                    preparedStatement.executeQuery()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
                     compras.add(convertirACompra(resultSet));
@@ -72,6 +73,34 @@ public class CompraDAO {
         return compras;
     }
 
+    public BigDecimal obtenerMontoNoContabilizado(Connection conexion) throws SQLException {
+        String query = "SELECT COALESCE(SUM(monto), 0) AS total_compras FROM compra WHERE contabilizado = FALSE ";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                return resultSet.getBigDecimal("total_compras");
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException("Error al obtener el monto de las compras no contabilizadas: " + e.getMessage());
+        }
+
+        return BigDecimal.ZERO;
+    }
+
+    public void marcarTodosContabilizados(Connection conexion) throws SQLException {
+
+        String query = "UPDATE compra SET contabilizado = TRUE WHERE contabilizado = FALSE ";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al marcar las compras como contabilizadas: " + e.getMessage());
+        }
+    }
+
     private Compra convertirACompra(ResultSet resultSet) throws SQLException {
         return new Compra(
                 resultSet.getInt("codigo_compra"),
@@ -79,7 +108,6 @@ public class CompraDAO {
                 resultSet.getTimestamp("fecha_hora"),
                 resultSet.getInt("cantidad"),
                 resultSet.getBigDecimal("monto"),
-                resultSet.getBoolean("contabilizado")
-        );
+                resultSet.getBoolean("contabilizado"));
     }
 }

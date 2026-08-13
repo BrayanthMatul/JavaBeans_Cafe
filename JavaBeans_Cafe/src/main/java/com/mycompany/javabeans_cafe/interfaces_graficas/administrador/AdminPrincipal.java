@@ -21,6 +21,7 @@ import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalEditarMesa;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalRegistrarMesa;
 import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.internals.mesas.InternalVisualizadorMesas;
+import com.mycompany.javabeans_cafe.interfaces_graficas.administrador.nomina.InternalBalance;
 import javax.swing.JInternalFrame;
 
 /**
@@ -77,6 +78,8 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuItemEditarProducto = new javax.swing.JMenuItem();
         jMenuItemAgregarInsumo = new javax.swing.JMenuItem();
         jMenuItemVerMenu = new javax.swing.JMenuItem();
+        JMenuNomina = new javax.swing.JMenu();
+        jMenuItemRealizarNomina = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -174,6 +177,14 @@ public class AdminPrincipal extends javax.swing.JFrame {
         jMenuProductos.add(jMenuItemVerMenu);
 
         jMenuBar1.add(jMenuProductos);
+
+        JMenuNomina.setText("Nomina");
+
+        jMenuItemRealizarNomina.setText("Realizar pago");
+        jMenuItemRealizarNomina.addActionListener(this::jMenuItemRealizarNominaActionPerformed);
+        JMenuNomina.add(jMenuItemRealizarNomina);
+
+        jMenuBar1.add(JMenuNomina);
 
         setJMenuBar(jMenuBar1);
 
@@ -291,6 +302,13 @@ public class AdminPrincipal extends javax.swing.JFrame {
         visulizarMenu.setVisible(true);
     }//GEN-LAST:event_jMenuItemVerMenuActionPerformed
 
+    private void jMenuItemRealizarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRealizarNominaActionPerformed
+        this.cerrarVentanasInternas();
+        InternalBalance balance = new InternalBalance(jDesktopPane1);
+        jDesktopPane1.add(balance);
+        balance.setVisible(true);
+    }//GEN-LAST:event_jMenuItemRealizarNominaActionPerformed
+
     private void jMenuItemRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRegistrarEmpleadoActionPerformed
         this.cerrarVentanasInternas();
         InternalRegistroEmpleado registrarEmpleado = new InternalRegistroEmpleado();
@@ -305,6 +323,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu JMenuNomina;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -321,6 +340,7 @@ public class AdminPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemListaEmpleados;
     private javax.swing.JMenuItem jMenuItemListaInsumos;
     private javax.swing.JMenuItem jMenuItemListaStockBajo;
+    private javax.swing.JMenuItem jMenuItemRealizarNomina;
     private javax.swing.JMenuItem jMenuItemRegistrarCompra;
     private javax.swing.JMenuItem jMenuItemRegistrarEmpleado;
     private javax.swing.JMenuItem jMenuItemRegistrarInsumo;

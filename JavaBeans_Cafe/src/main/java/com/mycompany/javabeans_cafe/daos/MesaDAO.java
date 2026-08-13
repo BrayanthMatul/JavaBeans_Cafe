@@ -55,6 +55,18 @@ public class MesaDAO {
         }
     }
 
+    public void actualizarEstado(Connection conexion, int numeroMesa, EstadoMesa nuevoEstado) throws SQLException {
+        String query = "UPDATE mesa SET estado = ? WHERE numero_mesa = ?";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, nuevoEstado.name());
+            preparedStatement.setInt(2, numeroMesa);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar el estado de la mesa: " + e.getMessage());
+        }
+    }
+
     private Mesa convertirAMesa(ResultSet resultSet) throws SQLException {
         return new Mesa(
                 resultSet.getInt("numero_mesa"),
